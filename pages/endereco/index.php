@@ -10,7 +10,7 @@ cabecalho(); ?>
         <div class="row">
             <div class="mb-4 col-md-4">
                 <p class="font-weight-400 txt-end">Cep</p>
-                <input class="form-control" id="cep" maxlength="9" name="cep" data-mask="00000-000" placeholder="Digite o CEP" onblur="pesquisacep(this.value);" />
+                <input class="form-control" id="cep" maxlength="9" name="cep" data-mask="00000-000" placeholder="Digite o CEP" />
             </div>
             <div class="mb-4 col-md-4">
                 <p class="font-weight-400 txt-end">Endereço</p>

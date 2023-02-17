@@ -11,6 +11,8 @@
                     <title>App-Doutor</title>
                     <link rel="stylesheet" href="../../assets/css/style.css">
                     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+                    <link rel="stylesheet" href="../../assets/css/jquery.mCustomScrollbar.min.css">
+                 
                     <script src="https://kit.fontawesome.com/0afbe024e0.js" crossorigin="anonymous"></script>
                 </head>
 
@@ -25,9 +27,9 @@
     }
 
     function footer(){
-        ?>
-               <script src="../../assets/js/main.js"></script>
+        ?>      
                 <script src="../../assets/js/plugins/jquery-3.3.1.min.js"></script>
+                <script src="../../assets/js/main.js"></script>
                 <script src="../../assets/js/plugins/jquery.mask.js"></script>
                 <script src="../../assets/js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
                 <script src="../../assets/js/plugins/jquery.mCustomScrollbar.js"></script>
