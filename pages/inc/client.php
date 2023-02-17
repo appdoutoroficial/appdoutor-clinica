@@ -26,8 +26,11 @@
 
     function footer(){
         ?>
+               <script src="../../assets/js/main.js"></script>
                 <script src="../../assets/js/plugins/jquery-3.3.1.min.js"></script>
                 <script src="../../assets/js/plugins/jquery.mask.js"></script>
+                <script src="../../assets/js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+                <script src="../../assets/js/plugins/jquery.mCustomScrollbar.js"></script>
             </body>
 
             </html>

@@ -11,9 +11,10 @@ cabecalho(); ?>
         <img src="../../assets/images/selfie.png" class="selfie" alt="">
     </div>
 </div>
-</div>
 <button class="btn-avancar">Avançar</button>
 <div class="bx-cad">
     <a href="#" class="cad"> Pular</a>
 </div>
+</div>
+
 <?php footer(); ?>

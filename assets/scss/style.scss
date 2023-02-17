@@ -181,12 +181,14 @@ body {
 
 .selfie {
     display: block;
-    width: 300px;
+    width: 250px;
     margin: auto;
     border-radius: 10px;
 }
 
-//.card-foto {}
+.card-foto {
+    margin: 20px auto;
+}
 
 .ft-cad {
     display: initial;
@@ -368,5 +370,23 @@ body {
     background-color: rgba(0, 0, 0, 0.5) !important;
   }
 
-  
+  .txt-log a {
+    color: #43DEDB;
+    text-decoration: none;
+  }
+
+  .txt-log a:hover {
+    color: #43DEDB !important;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  .plus {
+    font-size: 50px;
+    color: #43DEDB;
+  }
+
+  .txt-end {
+    color: #43DEDB;
+  }
 
