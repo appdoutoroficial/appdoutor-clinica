@@ -10,15 +10,14 @@ body {
 }
 
 .container {
+    flex: 1;
     display: flex;
-    position: relative;
-    width: 80%;
-    height: 550px;
-    margin: auto;
-    background: #fff;
-    z-index: 99999;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.04);
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc( 100% - 100px);
+    overflow-y: scroll;
+    padding: 50px 2.5%;
 }
 
 .conteudo:after {
@@ -51,6 +50,7 @@ body {
 .login {
     display: flex;
     margin: auto;
+    height: 150px;
     justify-content: center;
     align-items: center;
 }
@@ -241,11 +241,12 @@ body {
 .login {
     margin: 50px auto;
     background: #fff;
-    border: 1px solid #e1e1e1;
-    width: 330px;
+    border: 1px solid #87DDDD;
+    width: 95%;
     display: flex;
     padding: 5px 30px;
-    align-items: center
+    align-items: center;
+    border-radius: 10px;
 }
 
 .login h5 {
@@ -278,23 +279,22 @@ body {
 .info-pac {
     position: relative;
     margin-bottom: 45px;
-  }
-  
-  input {
+}
+
+input {
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid #999;
-  }
-  
-  input:focus {
+}
+
+input:focus {
     outline: none;
-  }
-  
-  
-  label {
+}
+
+label {
     color: #999;
     font-size: 18px;
     font-weight: normal;
@@ -305,25 +305,23 @@ body {
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
-  }
-  
-  
-  input:focus~label,
-  input:valid~label {
+}
+
+input:focus~label,
+input:valid~label {
     top: -20px;
     font-size: 14px;
     color: #999;
-  }
-  
-  
-  .bar {
+}
+
+.bar {
     position: relative;
     display: block;
     width: 300px;
-  }
-  
-  .bar:before,
-  .bar:after {
+}
+
+.bar:before,
+.bar:after {
     content: '';
     height: 2px;
     width: 0;
@@ -333,60 +331,65 @@ body {
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
-  }
-  
-  .bar:before {
+}
+
+.bar:before {
     left: 50%;
-  }
-  
-  .bar:after {
+}
+
+.bar:after {
     right: 50%;
-  }
-  
-  
-  .light {
+}
+
+.light {
     position: absolute;
     height: 60%;
     width: 100px;
     top: 25%;
     left: 220px;
     opacity: 0.5;
-  }
-  
+}
 
-  /*--------------------
+
+/*--------------------
  Custom Srollbar
  --------------------*/
+
 .mCSB_scrollTools {
     margin: 1px -3px 1px 0;
     opacity: 0;
-  }
-  .mCSB_inside > .mCSB_container {
+}
+
+.mCSB_inside>.mCSB_container {
     margin-right: 0px;
     padding: 0 10px;
-  }
-  .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+}
+
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
     display: none !important;
     background-color: rgba(0, 0, 0, 0.5) !important;
-  }
+}
 
-  .txt-log a {
+.txt-log a {
     color: #43DEDB;
     text-decoration: none;
-  }
+}
 
-  .txt-log a:hover {
+.txt-log a:hover {
     color: #43DEDB !important;
     text-decoration: none;
     font-size: 18px;
-  }
+}
 
-  .plus {
+.plus {
     font-size: 50px;
     color: #43DEDB;
-  }
+}
 
-  .txt-end {
+.txt-end {
     color: #43DEDB;
-  }
+}
 
+.card-txt-1 {
+    margin: 350px 0 40px;
+}

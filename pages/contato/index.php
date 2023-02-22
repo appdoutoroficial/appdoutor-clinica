@@ -3,12 +3,18 @@ cabecalho(); ?>
 <div class="container">
 <div class="card-txt">
     <div class="card-body">
-        <p class="txt-instru"><b>Clínica Tal</b>, com qual número de telefone nós podemos usar para te contatar?</p>
+        <p class="txt-login"> <b>Selecione sua conta</b></p>
     </div>
 </div>
-<div class="campo-cad">
-    <input class="form-control cad-2" type="text" data-mask="(00) 0-0000-0000" placeholder="(11) 9-1234-1234" id="telefone" name="telefone">
+<div class="login">  
+<img src="../../assets/images/selfie.png" class="login-ft" alt="">
+<h5 class="txt-log"><a href="#">usuario@dominio.com</a></h5>            
 </div>
-<button class="btn-avancar">Avançar</button>
+<div class="login">  
+<i class="fa-solid fa-circle-plus plus"></i>
+<h5 class="txt-log"><a href="#">Usar outra conta</a></h5>            
+</div>
+<button class="btn-avancar">Vamos lá!</button>
 </div>
 <?php footer(); ?>
+
