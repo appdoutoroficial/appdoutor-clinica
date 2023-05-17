@@ -102,7 +102,7 @@ const Profile = (props) => {
               <span
                 className="input-group-text bg-transparent rounded-0 border-0"                
               >
-                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+                <span className="mdi  mdi-phone mdi-18px text-muted"></span>
               </span>
               <InputMask              
                  mask="(99) 99999-9999" maskChar={''}
