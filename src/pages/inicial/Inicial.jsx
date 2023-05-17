@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../../components/NavBar";
 import { ReactSVG } from "react-svg";
 import logo from "../../assets/img/logo-app.png";
+import { useNavigate } from "react-router-dom";
 
 const Inicial = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="welcome d-flex align-items-center justify-content-center vh-100">
@@ -15,7 +18,7 @@ const Inicial = () => {
       </div>
 
       <div className="footer fixed-bottom d-grid gap-3 m-4">
-        <a href="/cadastrar" className="btn btn-info btn-lg">
+        <a onClick={() => navigate('cadastrar')} className="btn btn-info btn-lg">
           Inscreva-se
         </a>
         <a href="/entrar" className="btn btn-outline-info btn-lg">
