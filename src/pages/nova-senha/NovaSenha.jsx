@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import InputMask from "react-input-mask";
 
-const NovaSenha = () => {
+const NovaSenha = (props) => {
   return (
     <>
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+            <a href="/verifica-senha" className="text-dark bg-white shadow rounded-circle icon">
+                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
+            <h6 className="mb-0 txt-center me-auto fw-bold">CADASTRE NOVA SENHA</h6>            
+        </div>
       <div className="sign-in p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
@@ -12,54 +18,53 @@ const NovaSenha = () => {
           </div>
         </div>
         <form>
-          <div className="mb-3">
-            <label for="exampleFormControlPassword" className="form-label mb-1">
+         <div className="mb-3">
+            <label for="exampleFormControlName" className="form-label mb-1">
               Nova senha
             </label>
             <div
               className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlPassword"
+              id="exampleFormControlName"
             >
               <span
                 className="input-group-text bg-transparent rounded-0 border-0"
-                id="password"
+                id="name"
               >
-                <span className="mdi mdi-lock-open-variant-outline mdi-18px text-muted"></span>
+                <span className="mdi mdi-lock-outline mdi-18px text-muted"></span>
               </span>
-              <input
-                type="password"
+              <InputMask
+                type={'password'} 
+                value={props.value}
+                onChange={props.onChange}                
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite sua senha"
-                aria-label="Type your password"
-                aria-describedby="password"
-                value=""
+                placeholder="Digite uma senha "
+                aria-label="Type your name"
+                aria-describedby="name"
               />
             </div>
           </div>
-          <div className="mb-4">
-            <label
-              for="exampleFormControlPassword1"
-              className="form-label mb-1"
-            >
+          <div className="mb-3">
+            <label for="exampleFormControlName" className="form-label mb-1">
               Confirme sua senha
             </label>
             <div
               className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlPassword1"
+              id="exampleFormControlName"
             >
               <span
                 className="input-group-text bg-transparent rounded-0 border-0"
-                id="password1"
+                id="name"
               >
                 <span className="mdi mdi-lock-outline mdi-18px text-muted"></span>
               </span>
-              <input
-                type="password"
+              <InputMask
+                type={'password'} 
+                value={props.value}
+                onChange={props.onChange}                
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Confirme sua senha"
-                aria-label="Type your confirm password"
-                aria-describedby="password1"
-                value=""
+                placeholder="Confirme sua nova senha "
+                aria-label="Type your name"
+                aria-describedby="name"
               />
             </div>
           </div>

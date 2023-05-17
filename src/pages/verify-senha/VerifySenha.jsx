@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 const VerifySenha = () => {
   return (
     <>
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+            <a href="/verifica-senha" className="text-dark bg-white shadow rounded-circle icon">
+                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
+            <h6 className="mb-0 txt-center me-auto fw-bold">CÓDIGO DE VERIFICAÇÃO CELULAR</h6>            
+        </div>
       <div className="verify p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
