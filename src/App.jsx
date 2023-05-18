@@ -14,6 +14,7 @@ import NovaSenha from "./pages/nova-senha/NovaSenha";
 import Gmail from "./pages/entrarGmail/EntrarGmail";
 import Congrats from "./pages/congrats/Congrats";
 import IndexInterno from "./pages/interna/inicial/Inicial";
+import CadastrarCartao from "./pages/cadastrar-cartao/CadastrarCartao";
 
 import './assets/materialdesign/scss/materialdesignicons.scss'
 import './bootstrapicons.scss'
@@ -41,6 +42,7 @@ function App() {
     {path: '/responsavel', exact: true, element: <Responsavel />},
     {path: '/nova-senha', exact: true, element: <NovaSenha />},
     {path: '/admin/index', exact: true, element: <IndexInterno />},
+    {path: '/cadastrar-cartao', exact: true, element: < CadastrarCartao/>}, 
   ]);
 
   return element;

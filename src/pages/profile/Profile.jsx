@@ -71,6 +71,54 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Inscrição estadual
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cpf"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask=""
+                value={props.value}
+                onChange={props.onChange}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite sua Inscrição estadual"
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlName" className="form-label mb-1">
+              Nome Fantasia
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlName"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="name"
+              >
+                <span className="mdi mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                value={props.value}
+                onChange={props.onChange}
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o nome da sua clínica "
+                aria-label="Type your name"
+                aria-describedby="name"
+              />
+            </div>
+          </div>
+          <div className="mb-3">
             <label for="exampleFormControlName" className="form-label mb-1">
               Nome
             </label>
