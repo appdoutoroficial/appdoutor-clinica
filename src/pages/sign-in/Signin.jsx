@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/AppContext";
 
 const Signin = (props) => {
   const navigate = useNavigate();
+  const value = useContext(AppContext);
 
+  console.log(value);
   return (
     <>
      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
