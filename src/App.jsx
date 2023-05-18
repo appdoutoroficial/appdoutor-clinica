@@ -9,7 +9,6 @@ import VerifySenha from "./pages/verify-senha/VerifySenha";
 import Profile from "./pages/profile/Profile";
 import Selfie from "./pages/selfie/Selfie";
 import RecuperaSenha from "./pages/recuperaSenha/RecuperaSenha";
-import Responsavel from "./pages/responsavel/Responsavel";
 import NovaSenha from "./pages/nova-senha/NovaSenha";
 import Gmail from "./pages/entrarGmail/EntrarGmail";
 import Congrats from "./pages/congrats/Congrats";
@@ -35,7 +34,6 @@ function App() {
     {path: '/finalizar', exact: true, element: <Congrats />},
     {path: '/login-gmail', exact: true, element: <Gmail />},
     {path: '/recuperar-senha', exact: true, element: <RecuperaSenha />},
-    {path: '/responsavel', exact: true, element: <Responsavel />},
     {path: '/nova-senha', exact: true, element: <NovaSenha />},
     {path: '/admin/index', exact: true, element: <IndexInterno />},
   ]);
