@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
+import { useNavigate } from "react-router-dom";
 
 const Responsavel = (props) => {
+  const navigate = useNavigate();
   return (
     <>
        <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
-            <a href="/cadastro" className="text-dark bg-white shadow rounded-circle icon">
+            <a onClick={() => navigate('/cadastro')} className="text-dark bg-white shadow rounded-circle icon">
                 <span className="mdi mdi-arrow-left mdi-18px"></span></a>
             <h6 className="mb-0 txt-center me-auto fw-bold">CADASTRO RESPONSÁVEL</h6>            
         </div>
@@ -93,7 +95,7 @@ const Responsavel = (props) => {
           </div>
           <div>
             <a
-              href="/selfie"
+             onClick={() => navigate('/selfie')}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
               Continuar
