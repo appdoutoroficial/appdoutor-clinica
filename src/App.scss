@@ -506,6 +506,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .icon-lg {
@@ -1435,4 +1436,8 @@ tl-item.active .tl-dot:before {
 
 #main-nav .d-flex.align-items-center.gap-2 {
     padding: 10px 15px;
+}
+
+.txt-center {
+    margin: auto;
 }

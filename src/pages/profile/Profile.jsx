@@ -34,7 +34,7 @@ const Profile = (props) => {
      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
             <a onClick={() => navigate('/verifica-email')} className="text-dark bg-white shadow rounded-circle icon">
                 <span className="mdi mdi-arrow-left mdi-18px"></span></a>
-            <h6 className="mb-0 txt-center me-auto fw-bold">CADASTRO CLINÍCA</h6>            
+            <h6 className="mb-0 txt-center fw-bold">CADASTRO CLINÍCA</h6>            
         </div>
       <div className="sign-in p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import InputMask from "react-input-mask";
 
-const VerifySenha = () => {
+const VerifySenha = (props) => {
   const navigate = useNavigate()
   
   return (
@@ -23,45 +24,50 @@ const VerifySenha = () => {
         </div>
         <div className="d-flex gap-1 mb-2">
           <div className="col">
-            <input
-              type="text"
-              className="form-control form-control-lg text-center py-3"
-              value="5"
-              maxlength="1"
+            <InputMask
+             mask="9" maskChar={''}
+             value={props.value}
+             onChange={props.onChange}          
+              className="form-control form-control-lg text-center py-3"              
+              maxlength={1}
             />
           </div>
           <div className="col">
-            <input
-              type="text"
-              className="form-control form-control-lg text-center py-3"
-              value="2"
-              maxlength="1"
+            <InputMask
+             mask="9" maskChar={''}
+             value={props.value}
+             onChange={props.onChange}          
+              className="form-control form-control-lg text-center py-3"              
+              maxlength={1}
             />
           </div>
           <div className="col">
-            <input
-              type="text"
-              className="form-control form-control-lg text-center py-3"
-              value="7"
-              maxlength="1"
+            <InputMask
+             mask="9" maskChar={''}
+             value={props.value}
+             onChange={props.onChange}          
+              className="form-control form-control-lg text-center py-3"              
+              maxlength={1}
             />
           </div>
           <div className="col">
-            <input
-              type="text"
-              className="form-control form-control-lg text-center py-3"
-              value="2"
-              maxlength="1"
+            <InputMask
+             mask="9" maskChar={''}
+             value={props.value}
+             onChange={props.onChange}          
+              className="form-control form-control-lg text-center py-3"              
+              maxlength={1}
             />
           </div>
           <div className="col">
-            <input
-              type="text"
-              className="form-control form-control-lg text-center py-3"
-              value="8"
-              maxlength="1"
+            <InputMask
+             mask="9" maskChar={''}
+             value={props.value}
+             onChange={props.onChange}          
+              className="form-control form-control-lg text-center py-3"              
+              maxlength={1}
             />
-          </div>
+          </div>        
         </div>
         <p className="text-muted text-center mt-4">
           Não recebeu o código?{" "}
