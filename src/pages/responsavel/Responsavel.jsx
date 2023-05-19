@@ -9,6 +9,31 @@ const Responsavel = (props) => {
   const navigate = useNavigate();
   const value = useContext(AppContext);
   console.log(value);
+
+  const submitForm = () => {
+    // navigate('/selfie')
+    axiosConfig.post("/Clinica/Salvar", value.state.onboarding)
+      .then((response) => {
+        if( response.data.statusCode === 200 && response.data.sucesso ){
+          Swal.fire({
+              icon: "success",
+              title: response.data.mensagem,
+              showCancelButton: false,
+              confirmButtonText: 'Ok',
+          }).then((result) => {
+              navigate('/verifica-email')
+          });
+        }
+      })
+      .catch((err) =>{
+        Swal.fire({
+          icon: "warning",
+          title: "Erro por favor tente mais tarde",
+          showCancelButton: false,
+          confirmButtonText: 'Ok',
+        });
+      })
+  }
   return (
     <>
        <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
@@ -100,10 +125,10 @@ const Responsavel = (props) => {
           </div>
           <div>
             <a
-             onClick={() => navigate('/selfie')}
+             onClick={submitForm}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
-              Continuar
+              Finalizar Cadastro
             </a>
           </div>
         </form>

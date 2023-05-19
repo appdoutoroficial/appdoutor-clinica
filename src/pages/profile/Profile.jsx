@@ -138,8 +138,8 @@ const Profile = (props) => {
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o nome da sua clínica "
                 name="inscricaoEstadual"
-                value={value.state.onboarding.nome}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, nome: val.target.value}))}
+                value={value.state.onboarding.clinica}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, clinica: val.target.value}))}
               />
             </div>
           </div>

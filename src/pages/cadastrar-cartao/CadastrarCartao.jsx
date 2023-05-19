@@ -70,7 +70,6 @@ const CadastrarCartao = () => {
                  onFocus={handleInputFocus}                   
                  className="form-control bg-transparent rounded-0 border-0 px-0"
                  placeholder="Digite seu nome como está no cartão"
-                //  maxLength={15}
                 />
               </div>
             </div>
@@ -129,7 +128,6 @@ const CadastrarCartao = () => {
                  onFocus={handleInputFocus}                   
                  className="form-control bg-transparent rounded-0 border-0 px-0"
                  placeholder="Digite a data de vencimento do cartão"
-                //  maxLength={5}
                 />
               </div>
             </div>

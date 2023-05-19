@@ -56,6 +56,7 @@ const AppWrapper = () => {
     nome: "",
     nomeFantasia: "",
     cnpj: "",
+    clinica: "",
     inscricaoEstadual: "",
     email: "",
     telefone: "",
