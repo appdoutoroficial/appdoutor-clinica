@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/AppContext";
+import axiosConfig from '../../axiosConfig';
+import Swal from "sweetalert2";
 
-const Profile = (props) => {
-  
-    
+
+const Profile = (props) => {  
   const { register, handleSubmit, setValue, setFocus } = useForm();
+
+  const value = useContext(AppContext);
+  console.log(value);
+
 
   const onSubmit = (e) => {
     console.log(e);
   };
 
+
   const checkCEP = (e) => {
     const cep = e.target.value.replace(/\D/g, "");
-    console.log(cep);
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setValue("address", data.logradouro);
-        setValue("neighborhood", data.bairro);
-        setValue("city", data.localidade);
-        setValue("uf", data.uf);
-        setFocus("numero");
+        value.setOnboarding(prev => ({...prev, endereco: data}))
       });
   };
 
@@ -63,10 +64,10 @@ const Profile = (props) => {
               </span>
               <InputMask
                 mask="99.999.999/9999-99"
-                value={props.value}
-                onChange={props.onChange}
+                defaultValue={value.state.onboarding.cnpj}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o seu CNPJ "
+                onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
               />
             </div>
           </div>
@@ -84,12 +85,13 @@ const Profile = (props) => {
               >
                 <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                mask=""
-                value={props.value}
-                onChange={props.onChange}
+              
+              <input type="text" 
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite sua Inscrição estadual"
+                name="inscricaoEstadual"
+                value={value.state.onboarding.inscricaoEstadual}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, inscricaoEstadual: val.target.value}))}
               />
             </div>
           </div>
@@ -107,14 +109,13 @@ const Profile = (props) => {
               >
                 <span className="mdi mdi-card-account-details-outline mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                value={props.value}
-                onChange={props.onChange}
-                type="text"
+
+              <input type="text" 
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o nome da sua clínica "
-                aria-label="Type your name"
-                aria-describedby="name"
+                name="nomeFantasia"
+                value={value.state.onboarding.nomeFantasia}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, nomeFantasia: val.target.value}))}
               />
             </div>
           </div>
@@ -132,14 +133,13 @@ const Profile = (props) => {
               >
                 <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                value={props.value}
-                onChange={props.onChange}
-                type="text"
+
+              <input type="text" 
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o nome da sua clínica "
-                aria-label="Type your name"
-                aria-describedby="name"
+                name="inscricaoEstadual"
+                value={value.state.onboarding.nome}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, nome: val.target.value}))}
               />
             </div>
           </div>
@@ -156,13 +156,14 @@ const Profile = (props) => {
               >
                 <span className="mdi  mdi-phone mdi-18px text-muted"></span>
               </span>
-              <InputMask              
-                 mask="(99) 99999-9999" maskChar={''}
-                value={props.value}
-                onChange={props.onChange}                
+
+              <InputMask
+                name="telefone"
+                mask="(99) 99999-9999" maskChar={''}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o seu telefone "
-                maxLength={15}                             
+                placeholder="Digite o seu celular"
+                defaultValue={value.state.onboarding.telefone}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, telefone: val.target.value}))}
               />
             </div>
           </div>
@@ -181,15 +182,11 @@ const Profile = (props) => {
                 <span className="mdi mdi-home mdi-18px text-muted"></span>
               </span>
               <InputMask
-               mask="99999-999" maskChar={''}
-                value={props.value}
-                onChange={props.onChange}  
-              {...register("cep")}
+                mask="99999-999" maskChar={''}
                 type="text"                               
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu CEP"
                 onBlur={checkCEP}
-                maxLength={9}
               />
             </div>
           </div>
@@ -216,7 +213,7 @@ const Profile = (props) => {
                 placeholder="Endereço "
                 aria-label=""
                 aria-describedby="endereco"
-                value=""
+                value={value.state.onboarding.endereco.logradouro}
               />
             </div>
           </div>
@@ -236,21 +233,19 @@ const Profile = (props) => {
               </span>
               <input
                 type="text"
-                {...register("numero")}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 name="number"
                 id="number"
                 placeholder="Número"
                 aria-label=""
                 aria-describedby="numero"
-                value={props.value}
-                maxLength={5}
+                value={value.state.onboarding.endereco.numero}
               />
             </div>
           </div>
           <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
-              Complemento (Opcional)
+              Complemento
             </label>
             <div
               className="input-group border bg-white rounded-3 py-1"
@@ -264,14 +259,13 @@ const Profile = (props) => {
               </span>
               <input
                 type="text"
-                {...register("complement")}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 name="complement"
                 id="complement"
                 placeholder="Complemento"
                 aria-label=""
                 aria-describedby="Complemento"
-                value={props.value}
+                value={value.state.onboarding.endereco.complemento}
               />
             </div>
           </div>
@@ -291,14 +285,13 @@ const Profile = (props) => {
               </span>
               <input
                 type="text"
-                {...register("neighborhood")}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 name="neighbor"
                 id="neighbor"
                 placeholder="Bairro "
                 aria-label=""
                 aria-describedby="bairro"
-                value=""
+                value={value.state.onboarding.endereco.bairro}
               />
             </div>
           </div>
@@ -318,14 +311,13 @@ const Profile = (props) => {
               </span>
               <input
                 type="text"
-                {...register("city")}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 name="city"
                 id="city"
                 placeholder="Cidade"
                 aria-label=""
                 aria-describedby="cidade"
-                value=""
+                value={value.state.onboarding.endereco.localidade}
               />
             </div>
           </div>
@@ -345,14 +337,13 @@ const Profile = (props) => {
               </span>
               <input
                 type="text"
-                {...register("uf")}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 name="state"
                 id="state"
                 placeholder="Estado"
                 aria-label=""
                 aria-describedby="Estado"
-                value=""
+                value={value.state.onboarding.endereco.uf}
               />
             </div>
           </div>

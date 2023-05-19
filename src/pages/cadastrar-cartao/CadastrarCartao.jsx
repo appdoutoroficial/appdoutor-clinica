@@ -70,7 +70,7 @@ const CadastrarCartao = () => {
                  onFocus={handleInputFocus}                   
                  className="form-control bg-transparent rounded-0 border-0 px-0"
                  placeholder="Digite seu nome como está no cartão"
-                 maxLength={15}
+                //  maxLength={15}
                 />
               </div>
             </div>
@@ -99,7 +99,7 @@ const CadastrarCartao = () => {
                   value={state.number.props}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}                   
-                  maxLength= {16}                    
+                  // maxLength= {16}                    
                   />
               </div>
             </div>
@@ -129,7 +129,7 @@ const CadastrarCartao = () => {
                  onFocus={handleInputFocus}                   
                  className="form-control bg-transparent rounded-0 border-0 px-0"
                  placeholder="Digite a data de vencimento do cartão"
-                 maxLength={6}
+                //  maxLength={5}
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@ const CadastrarCartao = () => {
                   aria-label="Type your number"
                   aria-describedby="number"
                   defaultValue=""
-                  maxLength={3}
+                  // maxLength={3}
                 />
               </div>
             </div>

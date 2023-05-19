@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/AppContext";
+import axiosConfig from '../../axiosConfig';
+import Swal from "sweetalert2";
 
 const Responsavel = (props) => {
   const navigate = useNavigate();
+  const value = useContext(AppContext);
+  console.log(value);
   return (
     <>
        <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
@@ -36,14 +41,13 @@ const Responsavel = (props) => {
               >
                 <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                value={props.value}
-                onChange={props.onChange}
-                type="text"
+
+              <input type="text" 
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o nome do responsável "
-                aria-label="Type your name"
-                aria-describedby="name"
+                placeholder="Nome do Responsável"
+                name="responsavel"
+                value={value.state.onboarding.responsavel}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, responsavel: val.target.value}))}
               />
             </div>
           </div>
@@ -83,13 +87,14 @@ const Responsavel = (props) => {
               >
                 <span className="mdi  mdi-phone mdi-18px text-muted"></span>
               </span>
-              <InputMask              
-                 mask="(99) 99999-9999" maskChar={''}
-                value={props.value}
-                onChange={props.onChange}                
+
+              <InputMask
+                name="telefone"
+                mask="(99) 99999-9999" maskChar={''}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o contato do responsável "
-                maxLength={15}                             
+                placeholder="Digite o seu celular"
+                value={value.state.onboarding.telefoneResponsavel}
+                onChange={(val) => value.setOnboarding(prev => ({...prev, telefoneResponsavel: val.target.value}))}
               />
             </div>
           </div>

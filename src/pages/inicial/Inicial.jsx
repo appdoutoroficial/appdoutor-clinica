@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NavBar from "../../components/NavBar";
 import { ReactSVG } from "react-svg";
 import logo from "../../assets/img/logo-app.png";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../../context/AppContext";
 
 const Inicial = () => {
   const navigate = useNavigate();

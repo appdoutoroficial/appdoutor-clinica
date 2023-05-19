@@ -52,22 +52,52 @@ function App() {
 
 const AppWrapper = () => {
   const [menuObject, setMenuObject] = useState(false);
-
-  console.log(menuObject);
+  const [onboarding, setOnboarding] = useState({
+    nome: "",
+    nomeFantasia: "",
+    cnpj: "",
+    inscricaoEstadual: "",
+    email: "",
+    telefone: "",
+    endereco: {
+      logradouro: "",
+      complemento: "",
+      numero: "",
+      bairro: "",
+      cidade: "",
+      estado: "",
+      cep: ""
+    },
+    responsavel: "",
+    telefoneResponsavel: "",
+    pagamento: {
+      nomeNoCartao: "",
+      documento: "",
+      bandeira: 0,
+      numero: "",
+      vencimento: "",
+      cvv: ""
+    },
+    especialidades: "",
+    idPlanoSelecionado: 0,
+    modificadoPor: "",
+    dataAbertura: "2023-05-18T18:08:15.756Z"
+  });
 
   return (
     <AppContext.Provider
-    // <Router
       value={{
         state: {
-          changeMenu: menuObject
+          changeMenu: menuObject,
+          onboarding: onboarding
         },
-        setMenuObject: setMenuObject
+        setMenuObject: setMenuObject,
+        setOnboarding: setOnboarding,
       }}
     >
-      <Router>
-        <App />
-      </Router>
+        <Router>
+          <App />
+        </Router>
     </AppContext.Provider>
   );
 };
