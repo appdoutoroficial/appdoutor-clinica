@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="sign-in p-4">
@@ -116,14 +116,14 @@ const Signup = () => {
           </div>
           <div>
             <a
-              onClick={() => navigate('/verifica')}
+              onClick={() => navigate("/verifica")}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
               Criar Conta
             </a>
             <p className="text-muted text-center small">
               Já tem cadastro?{" "}
-              <a className="text-primary" onClick={() => navigate('/entrar')}>
+              <a className="text-primary" onClick={() => navigate("/entrar")}>
                 Entrar
               </a>
             </p>

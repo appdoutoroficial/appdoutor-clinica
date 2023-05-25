@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
-import axiosConfig from '../../axiosConfig';
+import axiosConfig from "../../axiosConfig";
 import Swal from "sweetalert2";
 
 const Responsavel = (props) => {
@@ -12,36 +12,43 @@ const Responsavel = (props) => {
 
   const submitForm = () => {
     // navigate('/selfie')
-    axiosConfig.post("/Clinica/Salvar", value.state.onboarding)
+    axiosConfig
+      .post("/Clinica/Salvar", value.state.onboarding)
       .then((response) => {
-        if( response.data.statusCode === 200 && response.data.sucesso ){
+        if (response.data.statusCode === 200 && response.data.sucesso) {
           Swal.fire({
-              icon: "success",
-              title: response.data.mensagem,
-              showCancelButton: false,
-              confirmButtonText: 'Ok',
+            icon: "success",
+            title: response.data.mensagem,
+            showCancelButton: false,
+            confirmButtonText: "Ok",
           }).then((result) => {
-              navigate('/verifica-email')
+            navigate("/verifica-email");
           });
         }
       })
-      .catch((err) =>{
+      .catch((err) => {
         Swal.fire({
           icon: "warning",
           title: "Erro por favor tente mais tarde",
           showCancelButton: false,
-          confirmButtonText: 'Ok',
+          confirmButtonText: "Ok",
         });
-      })
-  }
+      });
+  };
   return (
     <>
-       <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
-            <a onClick={() => navigate('/cadastro')} className="text-dark bg-white shadow rounded-circle icon">
-                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
-            <h6 className="mb-0 txt-center me-auto fw-bold">CADASTRO RESPONSÁVEL</h6>            
-        </div>
-      <div className="sign-in p-4">    
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+        <a
+          onClick={() => navigate("/cadastro")}
+          className="text-dark bg-white shadow rounded-circle icon"
+        >
+          <span className="mdi mdi-arrow-left mdi-18px"></span>
+        </a>
+        <h6 className="mb-0 txt-center me-auto fw-bold">
+          CADASTRO RESPONSÁVEL
+        </h6>
+      </div>
+      <div className="sign-in p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
             <span className="mdi mdi-account-plus-outline display-1 user-icon"></span>
@@ -52,7 +59,7 @@ const Responsavel = (props) => {
           </div>
         </div>
         <form>
-        <div className="mb-3">
+          <div className="mb-3">
             <label for="exampleFormControlName" className="form-label mb-1">
               Nome
             </label>
@@ -67,12 +74,272 @@ const Responsavel = (props) => {
                 <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
               </span>
 
-              <input type="text" 
+              <input
+                type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Nome do Responsável"
                 name="responsavel"
                 value={value.state.onboarding.responsavel}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, responsavel: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    responsavel: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              CPF
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cpf"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask="999.999.999-99"
+                // defaultValue={}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu CPF "
+                //onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              RG
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="rg"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask="99.999.999-9"
+                //defaultValue={}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu RG "
+                //onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Cep
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask="99999-999"
+                maskChar={""}
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite seu CEP"
+                //onBlur={checkCEP}
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Endereço
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="address"
+                id="rua"
+                placeholder="Endereço "
+                aria-label=""
+                aria-describedby="endereco"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Número
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="number"
+                id="number"
+                placeholder="Número"
+                aria-label=""
+                aria-describedby="numero"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Complemento
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="complement"
+                id="complement"
+                placeholder="Complemento"
+                aria-label=""
+                aria-describedby="Complemento"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Bairro
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="neighbor"
+                id="neighbor"
+                placeholder="Bairro "
+                aria-label=""
+                aria-describedby="bairro"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Cidade
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="city"
+                id="city"
+                placeholder="Cidade"
+                aria-label=""
+                aria-describedby="cidade"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Estado
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cep"
+              >
+                <span className="mdi mdi-home mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                name="state"
+                id="state"
+                placeholder="Estado"
+                aria-label=""
+                aria-describedby="Estado"
+                value=""
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Contato
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span className="input-group-text bg-transparent rounded-0 border-0">
+                <span className="mdi  mdi-phone mdi-18px text-muted"></span>
+              </span>
+
+              <InputMask
+                name="telefone"
+                mask="(99) 99999-9999"
+                maskChar={""}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu celular"
+                value={value.state.onboarding.telefoneResponsavel}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    telefoneResponsavel: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -99,33 +366,9 @@ const Responsavel = (props) => {
               </select>
             </div>
           </div>
-          <div className="mb-3">
-            <label for="exampleFormControlCPF" className="form-label mb-1">
-              Contato
-            </label>
-            <div
-              className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlCPF"
-            >
-              <span
-                className="input-group-text bg-transparent rounded-0 border-0"                
-              >
-                <span className="mdi  mdi-phone mdi-18px text-muted"></span>
-              </span>
-
-              <InputMask
-                name="telefone"
-                mask="(99) 99999-9999" maskChar={''}
-                className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o seu celular"
-                value={value.state.onboarding.telefoneResponsavel}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, telefoneResponsavel: val.target.value}))}
-              />
-            </div>
-          </div>
           <div>
             <a
-             onClick={submitForm}
+              onClick={submitForm}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
               Finalizar Cadastro

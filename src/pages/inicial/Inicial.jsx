@@ -19,10 +19,16 @@ const Inicial = () => {
       </div>
 
       <div className="footer fixed-bottom d-grid gap-3 m-4">
-        <a onClick={() => navigate('cadastrar')} className="btn btn-info btn-lg">
+        <a
+          onClick={() => navigate("cadastrar")}
+          className="btn btn-info btn-lg"
+        >
           Inscreva-se
         </a>
-        <a onClick={() => navigate('entrar')} className="btn btn-outline-info btn-lg">
+        <a
+          onClick={() => navigate("entrar")}
+          className="btn btn-outline-info btn-lg"
+        >
           Entrar com App doutor
         </a>
       </div>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 
 const RecuperaSenha = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <div className="sign-in p-4">
@@ -18,7 +18,7 @@ const RecuperaSenha = (props) => {
           </div>
         </div>
         <form>
-        <div className="mb-2">
+          <div className="mb-2">
             <label for="exampleFormControlName" className="form-label mb-1">
               E-mail
             </label>
@@ -46,7 +46,7 @@ const RecuperaSenha = (props) => {
         </form>
         <div className="footer fixed-bottom m-4">
           <a
-            onClick={() => navigate('/verifica-senha')}
+            onClick={() => navigate("/verifica-senha")}
             className="btn btn-info btn-lg w-100 rounded-4"
           >
             Enviar

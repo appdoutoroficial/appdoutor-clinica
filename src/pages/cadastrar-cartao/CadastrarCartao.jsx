@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import NavBar from "../../components/NavBar";
 import Menu from "../../components/Menu";
@@ -8,7 +8,7 @@ import Cards from "react-credit-cards-2";
 
 const CadastrarCartao = () => {
   const navigate = useNavigate();
-    
+
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -63,13 +63,13 @@ const CadastrarCartao = () => {
                   <span className="mdi mdi-account-outline mdi-18px" />
                 </span>
                 <InputMask
-                 type="text"
-                 name="name"
-                 value={state.name.props}
-                 onChange={handleInputChange}
-                 onFocus={handleInputFocus}                   
-                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                 placeholder="Digite seu nome como está no cartão"
+                  type="text"
+                  name="name"
+                  value={state.name.props}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+                  className="form-control bg-transparent rounded-0 border-0 px-0"
+                  placeholder="Digite seu nome como está no cartão"
                 />
               </div>
             </div>
@@ -90,16 +90,16 @@ const CadastrarCartao = () => {
                 >
                   <span className="mdi mdi-credit-card-check-outline mdi-18px" />
                 </span>
-                <InputMask                  
+                <InputMask
                   type="text"
-                  name="number"  
+                  name="number"
                   className="form-control bg-transparent rounded-0 border-0 px-0"
-                  placeholder="Digite o número do seu cartão"               
+                  placeholder="Digite o número do seu cartão"
                   value={state.number.props}
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus}                   
-                  // maxLength= {16}                    
-                  />
+                  onFocus={handleInputFocus}
+                  // maxLength= {16}
+                />
               </div>
             </div>
             <div className="mb-3">
@@ -107,7 +107,7 @@ const CadastrarCartao = () => {
                 htmlFor="exampleFormControlName"
                 className="form-label mb-1"
               >
-               Vencimento do cartão
+                Vencimento do cartão
               </label>
               <div
                 className="input-group border bg-white rounded-3 py-1"
@@ -120,18 +120,18 @@ const CadastrarCartao = () => {
                   <span className="mdi mdi-credit-card-check-outline mdi-18px" />
                 </span>
                 <InputMask
-                mask="99/99"
-                 type="text"
-                 name="expiry"
-                 value={state.expiry.props}
-                 onChange={handleInputChange}
-                 onFocus={handleInputFocus}                   
-                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                 placeholder="Digite a data de vencimento do cartão"
+                  mask="99/99"
+                  type="text"
+                  name="expiry"
+                  value={state.expiry.props}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+                  className="form-control bg-transparent rounded-0 border-0 px-0"
+                  placeholder="Digite a data de vencimento do cartão"
                 />
               </div>
             </div>
-           
+
             <div>
               <label
                 htmlFor="exampleFormControlNumber"
@@ -152,7 +152,7 @@ const CadastrarCartao = () => {
                 <input
                   value={state.cvc.props}
                   onChange={handleInputChange}
-                  onFocus={handleInputFocus} 
+                  onFocus={handleInputFocus}
                   type="text"
                   name="cvc"
                   className="form-control bg-transparent rounded-0 border-0 px-0"
@@ -168,13 +168,16 @@ const CadastrarCartao = () => {
         </div>
         {/* footer */}
         <div className="footer mt-auto p-3">
-          <a onClick={() => navigate('/admin/index')} className="btn btn-info btn-lg w-100 rounded-4">
+          <a
+            onClick={() => navigate("/admin/index")}
+            className="btn btn-info btn-lg w-100 rounded-4"
+          >
             Salvar cartão
           </a>
         </div>
       </div>
     </>
   );
-}
+};
 
-export default CadastrarCartao
+export default CadastrarCartao;

@@ -7,11 +7,15 @@ const Selfie = () => {
 
   return (
     <>
-    <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
-            <a onClick={() => navigate('/responsavel')} className="text-dark bg-white shadow rounded-circle icon">
-                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
-            <h6 className="mb-0 txt-center me-auto fw-bold">INSIRA SEU LOGO</h6>            
-        </div>
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+        <a
+          onClick={() => navigate("/responsavel")}
+          className="text-dark bg-white shadow rounded-circle icon"
+        >
+          <span className="mdi mdi-arrow-left mdi-18px"></span>
+        </a>
+        <h6 className="mb-0 txt-center me-auto fw-bold">INSIRA SEU LOGO</h6>
+      </div>
       <div className=" p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
@@ -31,10 +35,16 @@ const Selfie = () => {
         </div>
       </div>
       <div className="footer fixed-bottom d-grid gap-3 m-3">
-        <a onClick={() => navigate('')} class="btn btn-info btn-lg w-100 rounded-4">
+        <a
+          onClick={() => navigate("")}
+          class="btn btn-info btn-lg w-100 rounded-4"
+        >
           Buscar na galeria
         </a>
-        <a onClick={() => navigate('/finalizar')} class="btn btn-outline-info btn-lg w-100">
+        <a
+          onClick={() => navigate("/finalizar")}
+          class="btn btn-outline-info btn-lg w-100"
+        >
           Continuar
         </a>
       </div>

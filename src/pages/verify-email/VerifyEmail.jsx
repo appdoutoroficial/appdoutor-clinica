@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import AppContext from "../../context/AppContext";
-import axiosConfig from '../../axiosConfig';
+import axiosConfig from "../../axiosConfig";
 import Swal from "sweetalert2";
 
 const VerifyEmail = (props) => {
@@ -13,42 +13,49 @@ const VerifyEmail = (props) => {
   console.log(value, sms);
 
   const verifySms = () => {
-    navigate('/cadastro');
+    navigate("/cadastro");
     return false;
 
-    if( sms != '' ){
+    if (sms != "") {
       var email = value.state.onboarding.email.replace("(", "");
-      axiosConfig.post("/Clinica/ValidaEmail?email="+email+"&pin="+sms)
-      .then((response) => {
-        if( response.data.statusCode === 200 && response.data.sucesso ){
+      axiosConfig
+        .post("/Clinica/ValidaEmail?email=" + email + "&pin=" + sms)
+        .then((response) => {
+          if (response.data.statusCode === 200 && response.data.sucesso) {
             Swal.fire({
-                icon: "success",
-                title: response.data.mensagem,
-                showCancelButton: false,
-                confirmButtonText: 'Ok',
-            }).then((result) => {
-                navigate('/cadastro')
-            });
-        }
-      })
-      .catch((err) =>{
-          Swal.fire({
-              icon: "warning",
-              title: "Erro por favor tente mais tarde",
+              icon: "success",
+              title: response.data.mensagem,
               showCancelButton: false,
-              confirmButtonText: 'Ok',
+              confirmButtonText: "Ok",
+            }).then((result) => {
+              navigate("/cadastro");
+            });
+          }
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "warning",
+            title: "Erro por favor tente mais tarde",
+            showCancelButton: false,
+            confirmButtonText: "Ok",
           });
-      })
+        });
     }
-  }
+  };
 
   return (
     <>
-    <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
-            <a onClick={() => navigate('/verifica')} className="text-dark bg-white shadow rounded-circle icon">
-                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
-            <h6 className="mb-0 txt-center me-auto fw-bold">CÓDIGO DE VERIFICAÇÃO E-MAIL</h6>            
-        </div>
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+        <a
+          onClick={() => navigate("/verifica")}
+          className="text-dark bg-white shadow rounded-circle icon"
+        >
+          <span className="mdi mdi-arrow-left mdi-18px"></span>
+        </a>
+        <h6 className="mb-0 txt-center me-auto fw-bold">
+          CÓDIGO DE VERIFICAÇÃO E-MAIL
+        </h6>
+      </div>
       <div className="verify p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
@@ -62,13 +69,14 @@ const VerifyEmail = (props) => {
         <div className="d-flex gap-1 mb-2">
           <div className="col">
             <InputMask
-              mask="99999" maskChar={''}
+              mask="99999"
+              maskChar={""}
               name="codigo"
               value={props.value}
               onChange={(val) => setSMS(val.target.value)}
-              className="form-control form-control-lg text-center py-3"              
+              className="form-control form-control-lg text-center py-3"
             />
-          </div>        
+          </div>
         </div>
         <p className="text-muted text-center mt-4">
           Não recebeu o código?{" "}

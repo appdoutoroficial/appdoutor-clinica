@@ -14,7 +14,7 @@ const Signin = (props) => {
           </div>
         </div>
         <form>
-        <div className="mb-3">
+          <div className="mb-3">
             <label for="exampleFormControlName" className="form-label mb-1">
               E-mail
             </label>
@@ -54,9 +54,9 @@ const Signin = (props) => {
                 <span className="mdi mdi-lock-outline mdi-18px text-muted"></span>
               </span>
               <InputMask
-                type={'password'} 
+                type={"password"}
                 value={props.value}
-                onChange={props.onChange}                
+                onChange={props.onChange}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite sua senha "
                 aria-label="Type your name"
@@ -77,21 +77,24 @@ const Signin = (props) => {
           </div>
           <div>
             <a
-              onClick={() => navigate('/admin/index')}
+              onClick={() => navigate("/admin/index")}
               className="btn btn-info btn-lg w-100 rounded-4 mb-2"
             >
               Entrar
             </a>
             <div className="d-flex justify-content-between mt-2">
               <a
-               onClick={() => navigate('/recuperar-senha')}
+                onClick={() => navigate("/recuperar-senha")}
                 className="d-flex justify-content-end small text-primary"
               >
                 Esqueceu sua senha?
               </a>
               <p className="text-muted text-end small">
                 Ainda não tem cadastro?{" "}
-                <a onClick={() => navigate('/cadastrar')} className="text-primary">
+                <a
+                  onClick={() => navigate("/cadastrar")}
+                  className="text-primary"
+                >
                   Registre-se
                 </a>
               </p>
@@ -108,17 +111,11 @@ const Signin = (props) => {
         </div>
         <div className="d-flex gap-3">
           <a
-           onClick={() => navigate('/login-gmail')}
+            onClick={() => navigate("/login-gmail")}
             className="btn btn-white btn-lg bg-white col d-flex align-items-center justify-content-center shadow-sm border"
           >
-            <i className="bi bi-google"></i>Google
-          </a>
-          <a
-            onClick={() => navigate('/entrarGmail')}
-            className="btn btn-white btn-lg bg-white col d-flex align-items-center justify-content-center shadow-sm border"
-          >
-            <i className="bi bi-facebook h4 mb-0 me-3 secundario"></i>Facebook
-          </a>
+            <i className="mdi mdi-google"></i>Google
+          </a>         
         </div>
       </div>
     </>

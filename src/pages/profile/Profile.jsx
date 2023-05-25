@@ -3,40 +3,41 @@ import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
-import axiosConfig from '../../axiosConfig';
+import axiosConfig from "../../axiosConfig";
 import Swal from "sweetalert2";
 
-
-const Profile = (props) => {  
+const Profile = (props) => {
   const { register, handleSubmit, setValue, setFocus } = useForm();
 
   const value = useContext(AppContext);
   console.log(value);
 
-
   const onSubmit = (e) => {
     console.log(e);
   };
-
 
   const checkCEP = (e) => {
     const cep = e.target.value.replace(/\D/g, "");
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        value.setOnboarding(prev => ({...prev, endereco: data}))
+        value.setOnboarding((prev) => ({ ...prev, endereco: data }));
       });
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
-     <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
-            <a onClick={() => navigate('/verifica-email')} className="text-dark bg-white shadow rounded-circle icon">
-                <span className="mdi mdi-arrow-left mdi-18px"></span></a>
-            <h6 className="mb-0 txt-center fw-bold">CADASTRO CLINÍCA</h6>            
-        </div>
+      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+        <a
+          onClick={() => navigate("/verifica-email")}
+          className="text-dark bg-white shadow rounded-circle icon"
+        >
+          <span className="mdi mdi-arrow-left mdi-18px"></span>
+        </a>
+        <h6 className="mb-0 txt-center fw-bold">CADASTRO CLINÍCA</h6>
+      </div>
       <div className="sign-in p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
@@ -67,7 +68,12 @@ const Profile = (props) => {
                 defaultValue={value.state.onboarding.cnpj}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o seu CNPJ "
-                onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    cnpj: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -85,13 +91,19 @@ const Profile = (props) => {
               >
                 <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
               </span>
-              
-              <input type="text" 
+
+              <input
+                type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite sua Inscrição estadual"
                 name="inscricaoEstadual"
                 value={value.state.onboarding.inscricaoEstadual}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, inscricaoEstadual: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    inscricaoEstadual: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -110,12 +122,18 @@ const Profile = (props) => {
                 <span className="mdi mdi-card-account-details-outline mdi-18px text-muted"></span>
               </span>
 
-              <input type="text" 
+              <input
+                type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o nome da sua clínica "
                 name="nomeFantasia"
                 value={value.state.onboarding.nomeFantasia}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, nomeFantasia: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    nomeFantasia: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -134,12 +152,18 @@ const Profile = (props) => {
                 <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
               </span>
 
-              <input type="text" 
+              <input
+                type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o nome da sua clínica "
                 name="inscricaoEstadual"
                 value={value.state.onboarding.clinica}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, clinica: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    clinica: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -151,19 +175,23 @@ const Profile = (props) => {
               className="input-group border bg-white rounded-3 py-1"
               id="exampleFormControlCPF"
             >
-              <span
-                className="input-group-text bg-transparent rounded-0 border-0"                
-              >
+              <span className="input-group-text bg-transparent rounded-0 border-0">
                 <span className="mdi  mdi-phone mdi-18px text-muted"></span>
               </span>
 
               <InputMask
                 name="telefone"
-                mask="(99) 99999-9999" maskChar={''}
+                mask="(99) 99999-9999"
+                maskChar={""}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o seu celular"
                 defaultValue={value.state.onboarding.telefone}
-                onChange={(val) => value.setOnboarding(prev => ({...prev, telefone: val.target.value}))}
+                onChange={(val) =>
+                  value.setOnboarding((prev) => ({
+                    ...prev,
+                    telefone: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -182,8 +210,9 @@ const Profile = (props) => {
                 <span className="mdi mdi-home mdi-18px text-muted"></span>
               </span>
               <InputMask
-                mask="99999-999" maskChar={''}
-                type="text"                               
+                mask="99999-999"
+                maskChar={""}
+                type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu CEP"
                 onBlur={checkCEP}
@@ -349,7 +378,7 @@ const Profile = (props) => {
           </div>
           <div>
             <a
-             onClick={() => navigate('/responsavel')}
+              onClick={() => navigate("/responsavel")}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
               Continuar
