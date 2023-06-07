@@ -38,7 +38,7 @@ const Congrats = () => {
 
       <div className="footer fixed-bottom p-3">
         <a
-          onClick={() => navigate("/admin/index")}
+          onClick={() => navigate("/home")}
           className="btn btn-info btn-lg w-100 rounded-4"
         >
           Continuar

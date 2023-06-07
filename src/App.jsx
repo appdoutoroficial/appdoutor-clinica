@@ -15,16 +15,37 @@ import Gmail from "./pages/entrarGmail/EntrarGmail";
 import Congrats from "./pages/congrats/Congrats";
 import IndexInterno from "./pages/interna/inicial/Inicial";
 import CadastrarCartao from "./pages/cadastrar-cartao/CadastrarCartao";
+import Home from './pages/home/Home';
+import Paciente from './pages/paciente/Paciente';
+import CadastrarPaciente from './pages/cadastrar-paciente/CadastrarPaciente';
+import Consultas from "./pages/consultas/Consultas";
+import CadastrarConsulta from './pages/cadastrar-consulta/CadastrarConsulta';
+import Chat from './pages/chat/Chat'
+import AppDoutorPay from "./pages/appdoutor-pay/AppDoutorPay";
+import Faturas from "./pages/faturas/Faturas";
+import Conta from "./pages/conta/Conta";
+import Extratos from "./pages/extratos/Extratos";
+import StatusPagamento from "./pages/status-pagamento/StatusPagamento";
+import Especialista from "./pages/especialista/Especialista";
+import CadastrarEspecialista from "./pages/cadastrar-especialista/CadastrarEspecialista";
+import MinhaClinica from "./pages/minha-clinica/MinhaClinica";
+import CadastrarClinica from "./pages/cadastrar-clinica/CadastrarClinica";
+
 
 
 import './assets/materialdesign/scss/materialdesignicons.scss'
+import './assets/iconsmind/iconsmind.css'
 import './bootstrapicons.scss'
 import './demo.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './App.scss'
 import "./components/NavBar";
+import "./components/NavPainel"
 import AppContext from "./context/AppContext";
+
+
+
 
 
 function App() {
@@ -44,7 +65,21 @@ function App() {
     {path: '/nova-senha', exact: true, element: <NovaSenha />},
     {path: '/admin/index', exact: true, element: <IndexInterno />},
     {path: '/cadastrar-cartao', exact: true, element: < CadastrarCartao/>}, 
-    
+    {path: '/home', exact: true, element: < Home />}, 
+    {path: '/paciente', exact: true, element: < Paciente />},
+    {path: '/cadastrar-paciente', exact: true, element: < CadastrarPaciente />},
+    {path: '/consultas', exact: true, element: < Consultas />},
+    {path: '/cadastrar-consulta', exact: true, element: < CadastrarConsulta />},
+    {path: '/chat', exact: true, element: < Chat />},
+    {path: '/appdoutor-pay', exact: true, element: < AppDoutorPay />},
+    {path: '/faturas', exact: true, element: < Faturas />},
+    {path: '/conta', exact: true, element: < Conta />},
+    {path: '/extratos', exact: true, element: < Extratos />},
+    {path: '/status-pagamento', exact: true, element: < StatusPagamento />},
+    {path: '/especialista', exact: true, element: < Especialista />},
+    {path: '/cadastrar-especialista', exact: true, element: < CadastrarEspecialista />}, 
+    {path: '/minha-clinica', exact: true, element: < MinhaClinica />},  
+    {path: '/cadastrar-clinica', exact: true, element: < CadastrarClinica />},  
   ]);
 
   return element;
@@ -97,7 +132,7 @@ const AppWrapper = () => {
       }}
     >
         <Router>
-          <App />
+          <App />         
         </Router>
     </AppContext.Provider>
   );

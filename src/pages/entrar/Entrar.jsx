@@ -77,7 +77,7 @@ const Signin = (props) => {
           </div>
           <div>
             <a
-              onClick={() => navigate("/admin/index")}
+              onClick={() => navigate("/home")}
               className="btn btn-info btn-lg w-100 rounded-4 mb-2"
             >
               Entrar
