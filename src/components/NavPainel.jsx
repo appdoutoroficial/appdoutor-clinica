@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
 
-
 const NavPainel = () => {
   const value = useContext(AppContext);
 
@@ -30,7 +29,7 @@ const NavPainel = () => {
             <div></div>
           </div>
           <div className="d-flex align-items-center"></div>
-          <div style="margin: auto"></div>
+          <div style={{margin: 'auto'}}></div>
           <div className="header-part-right">
             <div className="dropdown">
               <i
@@ -131,18 +130,18 @@ const NavPainel = () => {
                     <p className="text-small text-muted m-0">Paciente Gomes</p>
                   </div>
                 </div>
-                <div className="ps__rail-x" style="left: 0px; bottom: 0px;">
+                <div className="ps__rail-x" style={{left: 0, bottom: 0}}>
                   <div
                     className="ps__thumb-x"
                     tabindex="0"
                     style="left: 0px; width: 0px;"
                   ></div>
                 </div>
-                <div className="ps__rail-y" style="top: 0px; right: 0px;">
+                <div className="ps__rail-y" style={{top: 0, right: 0}}>
                   <div
                     className="ps__thumb-y"
                     tabindex="0"
-                    style="top: 0px; height: 0px;"
+                    style={{top: 0, height: 0}}
                   ></div>
                 </div>
               </div>

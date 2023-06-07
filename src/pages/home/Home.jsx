@@ -9,6 +9,7 @@ const Home = () => {
 
   return (
     <>
+    <NavPainel />
       <div className="main-content-wrap sidenav-open flex-colum">
         <div className="main-content">
           <div className="row">
