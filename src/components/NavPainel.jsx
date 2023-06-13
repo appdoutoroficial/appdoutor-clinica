@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
+import photo from '../assets/img/Logo.png'
+import photoPerfil from '../assets/img/ft_perfil.png'
 
 const NavPainel = () => {
   const value = useContext(AppContext);
@@ -20,8 +22,7 @@ const NavPainel = () => {
       <div className="app-admin-wrap layout-sidebar-large">
         <div className="main-header">
           <div className="logo">
-            <img src={""} />
-            <img src={""} />
+            <img src={photo} />           
           </div>
           <div className="menu-toggle">
             <div></div>
@@ -150,21 +151,14 @@ const NavPainel = () => {
             <div className="dropdown">
               <div className="user col align-self-end">
                 <img
-                  src={""}
+                  src={photoPerfil}
                   id="userDropdown"
                   alt=""
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 />
-                <img
-                  src={""}
-                  id="userDropdown"
-                  alt=""
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                />
+            
                 <div
                   className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="userDropdown"
