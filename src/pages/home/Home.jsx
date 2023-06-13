@@ -122,6 +122,7 @@ const Home = () => {
           <br />
         </div>
       </div>
+      <Footer />
     </>
   );
 };

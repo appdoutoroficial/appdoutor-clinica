@@ -9,14 +9,14 @@ const NavPainel = () => {
 
   return (
     <>
-      <div id="overlay" onclick="off()">
+    {/*  <div id="overlay" onclick="off()">
         <div className="lds-ring">
           <div></div>
           <div></div>
           <div></div>
           <div></div>
         </div>
-      </div>
+  </div>*/}
       <div className="app-admin-wrap layout-sidebar-large">
         <div className="main-header">
           <div className="logo">
@@ -133,14 +133,14 @@ const NavPainel = () => {
                 <div className="ps__rail-x" style={{left: 0, bottom: 0}}>
                   <div
                     className="ps__thumb-x"
-                    tabindex="0"
-                    style="left: 0px; width: 0px;"
+                   
+                    style={{left: 0, width: 0}}
                   ></div>
                 </div>
                 <div className="ps__rail-y" style={{top: 0, right: 0}}>
                   <div
                     className="ps__thumb-y"
-                    tabindex="0"
+                    
                     style={{top: 0, height: 0}}
                   ></div>
                 </div>
