@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
+import NavPainel from "../../components/NavPainel";
+import Footer from "../../components/FooterPainel";
 
 const CadastrarClinica = (props) => {
   const { register, handleSubmit, setValue, setFocus } = useForm();
@@ -26,7 +28,9 @@ const CadastrarClinica = (props) => {
 
   const navigate = useNavigate();
   return (
-    <div className="main-content-wrap sidenav-open flex-colum">
+    <>
+      <NavPainel />
+      <div className="main-content-wrap sidenav-open flex-colum">
       <div className="main-content">
         <h1>Cadastrar Cínica</h1>
         <div class="row">
@@ -240,6 +244,8 @@ const CadastrarClinica = (props) => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

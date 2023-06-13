@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
 import { useForm } from "react-hook-form";
 import InputMask from "react-input-mask";
+import NavPainel from "../../components/NavPainel";
+import Footer from "../../components/FooterPainel";
 
 const Conta = (props) => {
   const { register, handleSubmit, setValue, setFocus } = useForm();
@@ -44,6 +46,8 @@ const Conta = (props) => {
 
   const navigate = useNavigate();
   return (
+   <>
+   <NavPainel />
     <div className="main-content-wrap sidenav-open flex-colum">
       <div className="main-content">
         <h1>Conta</h1>
@@ -320,6 +324,8 @@ const Conta = (props) => {
         <br />
       </div>
     </div>
+   <Footer />
+   </>
   );
 };
 

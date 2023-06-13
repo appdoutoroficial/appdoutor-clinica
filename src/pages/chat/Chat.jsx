@@ -5,12 +5,15 @@ import AppContext from "../../context/AppContext";
 import { useForm } from "react-hook-form";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import NavPainel from "../../components/NavPainel";
+import Footer from "../../components/FooterPainel";
 
 const Chat = () => {
   const navigate = useNavigate();
 
   return (
     <>
+    <NavPainel />
       <div className="main-content-wrap sidenav-open flex-column">
         <div className="main-content">
           <div className="card chat-sidebar-container">
@@ -152,6 +155,7 @@ const Chat = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
