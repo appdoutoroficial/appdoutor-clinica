@@ -12,10 +12,10 @@ const Footer = () => {
   return (
     <footer
       className="p-3 d-flex justify-content-center navbar fixed-bottom"
-      style={{ height: 90, margin: "auto", zIndex: 0 }}
+      style={{ height: 80, margin: "auto", zIndex: 0 }}
     >
       <h5
-        style={{ marginBottom: 0, fontSize: 10 }}
+        style={{ margin:'auto', fontSize: 15, display: 'flex', justifyContent: 'center', alignItems:'center' }}
         className="text-white text-center"
         href="javascript:;"
       >
@@ -23,7 +23,7 @@ const Footer = () => {
         <img
           src={photo}
           style={{
-            width: 90,
+            width: 120,
             margin: 0.1,
             display: "inline-block",
             marginBottom: 0,

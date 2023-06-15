@@ -22601,9 +22601,10 @@ a.typo_link.text-gray-900:after {
     list-style: none;
     text-align: center;
     width: 120px;
-    height: 100%;
+    max-height: 100%;
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
 }
 
 .layout-sidebar-large .sidebar-left .navigation-left .nav-item {

@@ -30,6 +30,7 @@ import Especialista from "./pages/especialista/Especialista";
 import CadastrarEspecialista from "./pages/cadastrar-especialista/CadastrarEspecialista";
 import MinhaClinica from "./pages/minha-clinica/MinhaClinica";
 import CadastrarClinica from "./pages/cadastrar-clinica/CadastrarClinica";
+import CadastrarPagamento from "./pages/cadastrar-pagamento/CadastrarPagamento";
 
 
 
@@ -79,7 +80,8 @@ function App() {
     {path: '/especialista', exact: true, element: < Especialista />},
     {path: '/cadastrar-especialista', exact: true, element: < CadastrarEspecialista />}, 
     {path: '/minha-clinica', exact: true, element: < MinhaClinica />},  
-    {path: '/cadastrar-clinica', exact: true, element: < CadastrarClinica />},  
+    {path: '/cadastrar-clinica', exact: true, element: < CadastrarClinica />},
+    {path: '/cadastrar-pagamento', exact: true, element: < CadastrarPagamento />},
   ]);
 
   return element;
