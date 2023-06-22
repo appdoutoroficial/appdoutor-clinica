@@ -11,20 +11,16 @@ const Verify = (props) => {
 
   const [sms, setSMS] = useState("");
 
-  console.log(value, sms);
-
+  
   const verifySms = () => {
-    navigate("/verifica-email");
-    return false;
-
     if (sms != "") {
-      var telefone = value.state.onboarding.telefone.replace("(", "");
+      var telefone = value.state.onboardingP.telefone.replace("(", "");
       telefone = telefone.replace("(", "", telefone);
       telefone = telefone.replace(")", "", telefone);
       telefone = telefone.replace(" ", "", telefone);
       telefone = telefone.replace("-", "", telefone);
       axiosConfig
-        .post("/Clinica/ValidaTelefone?telefone=55" + telefone + "&pin=" + sms)
+        .post("/Pessoa/ValidaTelefone?telefone=55" + telefone + "&pin=" + sms)
         .then((response) => {
           if (response.data.statusCode === 200 && response.data.sucesso) {
             Swal.fire({
@@ -33,7 +29,7 @@ const Verify = (props) => {
               showCancelButton: false,
               confirmButtonText: "Ok",
             }).then((result) => {
-              navigate("/verifica-email");
+              sendEmail();
             });
           }
         })
@@ -46,6 +42,35 @@ const Verify = (props) => {
           });
         });
     }
+  };
+
+  const sendEmail = () => {
+    axiosConfig
+      .post(
+        "/Pessoa/EnviaEmailParaValidacao?email=" + value.state.onboardingP.email
+      )
+      .then((response) => {
+        if (response.data.statusCode === 200 && response.data.sucesso) {
+          Swal.fire({
+            icon: "success",
+            title: response.data.mensagem,
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/verifica-email");
+            }
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "warning",
+          title: "Erro por favor tente mais tarde",
+          showCancelButton: false,
+          confirmButtonText: "Ok",
+        });
+      });
   };
 
   return (
@@ -74,7 +99,7 @@ const Verify = (props) => {
         <div className="d-flex gap-1 mb-2">
           <div className="col">
             <InputMask
-              mask="99999"
+              mask="999999"
               maskChar={""}
               name="codigo"
               value={props.value}

@@ -6,6 +6,10 @@ import Entrar from "./pages/entrar/Entrar";
 import Verify from "./pages/verify/Verify";
 import VerifyEmail from "./pages/verify-email/VerifyEmail";
 import VerifySenha from "./pages/verify-senha/VerifySenha";
+
+import VerifyEmailC from "./pages/verify-emailC/VerifyEmail";
+import VerifySenhaC from "./pages/verify-senhaC/VerifySenha";
+
 import Profile from "./pages/profile/Profile";
 import Selfie from "./pages/selfie/Selfie";
 import RecuperaSenha from "./pages/recuperaSenha/RecuperaSenha";
@@ -56,7 +60,11 @@ function App() {
     {path: '/entrar', exact: true, element: <Entrar />},
     {path: '/verifica', exact: true, element: <Verify />},
     {path: '/verifica-email', exact: true, element: <VerifyEmail />},
-    {path: '/verifica-senha', exact: true, element: <VerifySenha />},   
+    {path: '/verifica-senha', exact: true, element: <VerifySenha />},
+
+    {path: '/verifica-email-clinica', exact: true, element: <VerifyEmailC />},
+    {path: '/verifica-senha-clinica', exact: true, element: <VerifySenhaC />},
+
     {path: '/cadastro', exact: true, element: <Profile />},
     {path: '/selfie', exact: true, element: <Selfie />},
     {path: '/finalizar', exact: true, element: <Congrats />},
@@ -89,7 +97,28 @@ function App() {
 
 const AppWrapper = () => {
   const [menuObject, setMenuObject] = useState(false);
-  const [onboarding, setOnboarding] = useState({
+  const [onboardingP, setOnboardingP] = useState({
+    nome: "",
+    sobrenome: "",
+    email: "",
+    telefone: "",
+    cpf: "",
+    rg: "",
+    endereco: {
+      logradouro: "",
+      numero: "",
+      complemento: "",
+      bairro: "",
+      cidade: "",
+      estado: "",
+      cep: "0"
+    },
+    dataNascimento: "",
+    perfil: 1
+  });
+
+
+  const [onboardingC, setOnboardingC] = useState({
     nome: "",
     nomeFantasia: "",
     cnpj: "",
@@ -127,10 +156,12 @@ const AppWrapper = () => {
       value={{
         state: {
           changeMenu: menuObject,
-          onboarding: onboarding
+          onboardingP: onboardingP,
+          onboardingC: onboardingC
         },
         setMenuObject: setMenuObject,
-        setOnboarding: setOnboarding,
+        setOnboardingP: setOnboardingP,
+        setOnboardingC: setOnboardingC,
       }}
     >
         <Router>

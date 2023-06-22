@@ -35,6 +35,17 @@ const Responsavel = (props) => {
         });
       });
   };
+
+  const checkCEP = (e) => {
+    const cep = e.target.value.replace(/\D/g, "");
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        value.setOnboardingC((prev) => ({ ...prev, endereco: data }));
+      });
+  };
+
+
   return (
     <>
       <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
@@ -59,6 +70,154 @@ const Responsavel = (props) => {
           </div>
         </div>
         <form>
+        <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              CNPJ
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cpf"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask="99.999.999/9999-99"
+                defaultValue={value.state.onboardingC.cnpj}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu CNPJ "
+                onChange={(val) =>
+                  value.setOnboardingC((prev) => ({
+                    ...prev,
+                    cnpj: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Inscrição estadual
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cpf"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite sua Inscrição estadual"
+                name="inscricaoEstadual"
+                value={value.state.onboardingC.inscricaoEstadual}
+                onChange={(val) =>
+                  value.setOnboardingC((prev) => ({
+                    ...prev,
+                    inscricaoEstadual: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlName" className="form-label mb-1">
+              Nome Fantasia
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlName"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="name"
+              >
+                <span className="mdi mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o nome da sua clínica "
+                name="nomeFantasia"
+                value={value.state.onboardingC.nomeFantasia}
+                onChange={(val) =>
+                  value.setOnboardingC((prev) => ({
+                    ...prev,
+                    nomeFantasia: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlName" className="form-label mb-1">
+              Nome da sua clínica
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlName"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="name"
+              >
+                <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
+              </span>
+
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o nome da sua clínica "
+                name="inscricaoEstadual"
+                value={value.state.onboardingC.clinica}
+                onChange={(val) =>
+                  value.setOnboardingC((prev) => ({
+                    ...prev,
+                    clinica: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label for="exampleFormControlCPF" className="form-label mb-1">
+              Contato
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span className="input-group-text bg-transparent rounded-0 border-0">
+                <span className="mdi  mdi-phone mdi-18px text-muted"></span>
+              </span>
+
+              <InputMask
+                name="telefone"
+                mask="(99) 99999-9999"
+                maskChar={""}
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu celular"
+                defaultValue={value.state.onboardingC.telefone}
+                onChange={(val) =>
+                  value.setOnboardingC((prev) => ({
+                    ...prev,
+                    telefone: val.target.value,
+                    telefoneResponsavel: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+
           <div className="mb-3">
             <label for="exampleFormControlName" className="form-label mb-1">
               Nome
@@ -79,9 +238,9 @@ const Responsavel = (props) => {
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Nome do Responsável"
                 name="responsavel"
-                value={value.state.onboarding.responsavel}
+                value={value.state.onboardingC.responsavel}
                 onChange={(val) =>
-                  value.setOnboarding((prev) => ({
+                  value.setOnboardingP((prev) => ({
                     ...prev,
                     responsavel: val.target.value,
                   }))
@@ -89,52 +248,7 @@ const Responsavel = (props) => {
               />
             </div>
           </div>
-          <div className="mb-3">
-            <label for="exampleFormControlCPF" className="form-label mb-1">
-              CPF
-            </label>
-            <div
-              className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlCPF"
-            >
-              <span
-                className="input-group-text bg-transparent rounded-0 border-0"
-                id="cpf"
-              >
-                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
-              </span>
-              <InputMask
-                mask="999.999.999-99"
-                // defaultValue={}
-                className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o seu CPF "
-                //onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
-              />
-            </div>
-          </div>
-          <div className="mb-3">
-            <label for="exampleFormControlCPF" className="form-label mb-1">
-              RG
-            </label>
-            <div
-              className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlCPF"
-            >
-              <span
-                className="input-group-text bg-transparent rounded-0 border-0"
-                id="rg"
-              >
-                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
-              </span>
-              <InputMask
-                mask="99.999.999-9"
-                //defaultValue={}
-                className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite o seu RG "
-                //onChange={(val) => value.setOnboarding(prev => ({...prev, cnpj: val.target.value}))}
-              />
-            </div>
-          </div>
+          
           <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
               Cep
@@ -155,11 +269,12 @@ const Responsavel = (props) => {
                 type="text"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu CEP"
-                //onBlur={checkCEP}
+                onBlur={checkCEP}
               />
             </div>
           </div>
-          <div className="mb-3">
+          
+        <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
               Endereço
             </label>
@@ -181,7 +296,7 @@ const Responsavel = (props) => {
                 placeholder="Endereço "
                 aria-label=""
                 aria-describedby="endereco"
-                value=""
+                value={value.state.onboardingC.endereco.logradouro}
               />
             </div>
           </div>
@@ -207,7 +322,7 @@ const Responsavel = (props) => {
                 placeholder="Número"
                 aria-label=""
                 aria-describedby="numero"
-                value=""
+                value={value.state.onboardingC.endereco.numero}
               />
             </div>
           </div>
@@ -233,7 +348,7 @@ const Responsavel = (props) => {
                 placeholder="Complemento"
                 aria-label=""
                 aria-describedby="Complemento"
-                value=""
+                value={value.state.onboardingC.endereco.complemento}
               />
             </div>
           </div>
@@ -259,7 +374,7 @@ const Responsavel = (props) => {
                 placeholder="Bairro "
                 aria-label=""
                 aria-describedby="bairro"
-                value=""
+                value={value.state.onboardingC.endereco.bairro}
               />
             </div>
           </div>
@@ -285,7 +400,7 @@ const Responsavel = (props) => {
                 placeholder="Cidade"
                 aria-label=""
                 aria-describedby="cidade"
-                value=""
+                value={value.state.onboardingC.endereco.localidade}
               />
             </div>
           </div>
@@ -311,10 +426,11 @@ const Responsavel = (props) => {
                 placeholder="Estado"
                 aria-label=""
                 aria-describedby="Estado"
-                value=""
+                value={value.state.onboardingC.endereco.uf}
               />
             </div>
           </div>
+          
           <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
               Contato
@@ -333,9 +449,9 @@ const Responsavel = (props) => {
                 maskChar={""}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o seu celular"
-                value={value.state.onboarding.telefoneResponsavel}
+                value={value.state.onboardingC.telefoneResponsavel}
                 onChange={(val) =>
-                  value.setOnboarding((prev) => ({
+                  value.setOnboardingP((prev) => ({
                     ...prev,
                     telefoneResponsavel: val.target.value,
                   }))
@@ -343,7 +459,7 @@ const Responsavel = (props) => {
               />
             </div>
           </div>
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label for="exampleFormControlName1" className="form-label mb-1">
               Nível de permissão
             </label>
@@ -365,7 +481,7 @@ const Responsavel = (props) => {
                 <option value="4">Técnico</option>
               </select>
             </div>
-          </div>
+          </div> */}
           <div>
             <a
               onClick={submitForm}

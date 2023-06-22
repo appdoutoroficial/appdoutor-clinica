@@ -1,9 +1,52 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
+import axiosConfig from '../../axiosConfigLogin';
+import Swal from "sweetalert2";
+
 
 const Signin = (props) => {
   const navigate = useNavigate();
+  const [formSubmit, setSendSubmit] = useState({
+    usuario: "",
+    senha: "",
+  })
+
+  const submitSignin = () => {
+    if( formSubmit.email != '' && formSubmit.senha != '' ){
+      axiosConfig.post("/Auth/Login", formSubmit)
+      .then((response) => {
+        if( response.data.statusCode === 200 && response.data.sucesso ){
+            Swal.fire({
+                icon: "success",
+                title: response.data.mensagem,
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+                // navigate('/inicio')
+            });
+        }else{
+          Swal.fire({
+            icon: "success",
+            title: response.data.title,
+            showCancelButton: false,
+            confirmButtonText: 'Ok',
+          }).then((result) => {});
+        }
+      })
+      .catch((err) =>{
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: err.response.data.title,
+          showCancelButton: false,
+          confirmButtonText: 'Ok',
+        }).then((result) => {});
+      })
+    }
+  }
+  
+
   return (
     <>
       <div className="sign-in p-4">
@@ -28,14 +71,18 @@ const Signin = (props) => {
               >
                 <span className="mdi mdi-email-check-outline mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                value={props.value}
-                onChange={props.onChange}
-                type="text"
+              <input
+                type="email"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite seu e-mail "
-                aria-label="Type your name"
-                aria-describedby="name"
+                placeholder="Digite seu E-mail"
+                aria-label="Type your email or phone"
+                aria-describedby="mail"
+                onChange={(val) =>
+                  setSendSubmit((prev) => ({
+                    ...prev,
+                    usuario: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -53,18 +100,22 @@ const Signin = (props) => {
               >
                 <span className="mdi mdi-lock-outline mdi-18px text-muted"></span>
               </span>
-              <InputMask
-                type={"password"}
-                value={props.value}
-                onChange={props.onChange}
+              <input
+                type="password"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Digite sua senha "
-                aria-label="Type your name"
-                aria-describedby="name"
+                placeholder="Digite sua senha"
+                aria-label="Type your password"
+                aria-describedby="password"
+                onChange={(val) =>
+                  setSendSubmit((prev) => ({
+                    ...prev,
+                    senha: val.target.value,
+                  }))
+                }
               />
             </div>
           </div>
-          <div className="form-check form-switch mb-3">
+          {/* <div className="form-check form-switch mb-3">
             <input
               className="form-check-input"
               type="checkbox"
@@ -74,21 +125,21 @@ const Signin = (props) => {
             <label className="form-check-label" for="flexSwitchCheckDefault">
               Lembrar-me
             </label>
-          </div>
+          </div> */}
           <div>
             <a
-              onClick={() => navigate("/home")}
+              onClick={submitSignin}
               className="btn btn-info btn-lg w-100 rounded-4 mb-2"
             >
               Entrar
             </a>
             <div className="d-flex justify-content-between mt-2">
-              <a
+              {/* <a
                 onClick={() => navigate("/recuperar-senha")}
                 className="d-flex justify-content-end small text-primary"
               >
                 Esqueceu sua senha?
-              </a>
+              </a> */}
               <p className="text-muted text-end small">
                 Ainda não tem cadastro?{" "}
                 <a
@@ -103,7 +154,7 @@ const Signin = (props) => {
         </form>
       </div>
 
-      <div className="footer fixed-bottom m-4">
+      {/* <div className="footer fixed-bottom m-4">
         <div className="d-flex align-items-center justify-content-between gap-3 mb-3">
           <hr className="col" />
           <span>Ou continue com</span>
@@ -117,7 +168,7 @@ const Signin = (props) => {
             <i className="mdi mdi-google"></i>Google
           </a>         
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

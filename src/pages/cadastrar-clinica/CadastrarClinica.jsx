@@ -22,7 +22,7 @@ const CadastrarClinica = (props) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        value.setOnboarding((prev) => ({ ...prev, endereco: data }));
+        value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
       });
   };
 
@@ -75,7 +75,7 @@ const CadastrarClinica = (props) => {
                         placeholder="Digite o seu celular"
                         defaultValue={value.state.onboarding.telefone}
                         onChange={(val) =>
-                          value.setOnboarding((prev) => ({
+                          value.setOnboardingP((prev) => ({
                             ...prev,
                             telefone: val.target.value,
                           }))
@@ -90,7 +90,7 @@ const CadastrarClinica = (props) => {
                         className="form-control"
                         placeholder="Digite o seu CNPJ "
                         onChange={(val) =>
-                          value.setOnboarding((prev) => ({
+                          value.setOnboardingP((prev) => ({
                             ...prev,
                             cnpj: val.target.value,
                           }))
@@ -106,7 +106,7 @@ const CadastrarClinica = (props) => {
                         name="inscricaoEstadual"
                         value={value.state.onboarding.inscricaoEstadual}
                         onChange={(val) =>
-                          value.setOnboarding((prev) => ({
+                          value.setOnboardingP((prev) => ({
                             ...prev,
                             inscricaoEstadual: val.target.value,
                           }))

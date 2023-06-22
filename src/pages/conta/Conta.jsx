@@ -22,7 +22,7 @@ const Conta = (props) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        value.setOnboarding((prev) => ({ ...prev, endereco: data }));
+        value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
       });
   };
 
@@ -280,7 +280,7 @@ const Conta = (props) => {
                         className="form-control"
                         placeholder="Digite o seu CNPJ "
                         onChange={(val) =>
-                          value.setOnboarding((prev) => ({
+                          value.setOnboardingP((prev) => ({
                             ...prev,
                             cnpj: val.target.value,
                           }))

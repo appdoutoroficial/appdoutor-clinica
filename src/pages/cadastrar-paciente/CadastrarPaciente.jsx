@@ -23,7 +23,7 @@ const CadastrarPaciente = (props) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        value.setOnboarding((prev) => ({ ...prev, endereco: data }));
+        value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
       });
   };
 

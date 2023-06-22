@@ -9,16 +9,15 @@ const Signin = (props) => {
   const navigate = useNavigate();
   const value = useContext(AppContext);
 
-  console.log(value);
-
   const sendSubmit = () => {
     axiosConfig
       .post(
-        "/Clinica/EnviarTelefoneParaValidacao?telefone=" +
-          value.state.onboarding.telefone
+        "/Pessoa/ValidaCPF?CPF=" +
+          value.state.onboardingP.cpf
       )
       .then((response) => {
-        if (response.data.statusCode === 200 && response.data.sucesso) {
+        console.log(response.data.mensagem);
+        if (response.data.statusCode === 200 && response.data.sucesso && response.data.mensagem != 'CPF já cadastrado.') {
           Swal.fire({
             icon: "success",
             title: response.data.mensagem,
@@ -27,6 +26,13 @@ const Signin = (props) => {
           }).then((result) => {
             sendEmail();
           });
+        }else{
+          Swal.fire({
+            icon: "success",
+            title: response.data.mensagem,
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+          }).then((result) => {});
         }
       })
       .catch((err) => {
@@ -40,9 +46,15 @@ const Signin = (props) => {
   };
 
   const sendEmail = () => {
+    var telefone = value.state.onboardingP.telefone.replace("(", "");
+    telefone = telefone.replace("(", "", telefone);
+    telefone = telefone.replace(")", "", telefone);
+    telefone = telefone.replace(" ", "", telefone);
+    telefone = telefone.replace("-", "", telefone);
+    
     axiosConfig
       .post(
-        "/Clinica/EnviaEmailParaValidacao?email=" + value.state.onboarding.email
+        "/Pessoa/EnviarTelefoneParaValidacao?telefone=55" + telefone
       )
       .then((response) => {
         if (response.data.statusCode === 200 && response.data.sucesso) {
@@ -70,7 +82,7 @@ const Signin = (props) => {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
+      {/* <div className="d-flex align-items-center justify-content-between mb-auto p-3 bg-white shadow-sm osahan-header">
         <a
           onClick={() => navigate("/")}
           className="text-dark bg-white shadow rounded-circle icon"
@@ -78,7 +90,7 @@ const Signin = (props) => {
           <span className="mdi mdi-arrow-left mdi-18px"></span>
         </a>
         <h6 className="mb-0 txt-center me-auto fw-bold">CADASTRO CONTATO</h6>
-      </div>
+      </div> */}
       <div className="sign-in p-4">
         <div className="d-flex align-items-start justify-content-between mb-4">
           <div>
@@ -88,6 +100,34 @@ const Signin = (props) => {
           </div>
         </div>
         <form>
+          <div className="mb-3">
+            <label className="form-label mb-1">
+              CPF
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlCPF"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="cpf"
+              >
+                <span className="mdi  mdi-card-account-details-outline mdi-18px text-muted"></span>
+              </span>
+              <InputMask
+                mask="999.999.999-99"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite o seu CPF "
+                defaultValue={value.state.onboardingP.cpf}
+                onChange={(val) =>
+                  value.setOnboardingP((prev) => ({
+                    ...prev,
+                    cpf: val.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
           <div className="mb-3">
             <label className="form-label mb-1">E-mail</label>
             <div
@@ -106,12 +146,18 @@ const Signin = (props) => {
                 name="email"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu e-mail"
-                value={value.state.onboarding.email}
-                onChange={(val) =>
-                  value.setOnboarding((prev) => ({
-                    ...prev,
-                    email: val.target.value,
-                  }))
+                value={value.state.onboardingP.email}
+                onChange={(val) => {
+                    value.setOnboardingP((prev) => ({
+                      ...prev,
+                      email: val.target.value,
+                    }))
+
+                    value.setOnboardingC((prev) => ({
+                      ...prev,
+                      email: val.target.value,
+                    }))
+                  }
                 }
               />
             </div>
@@ -133,11 +179,47 @@ const Signin = (props) => {
                 name="nome"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu nome"
-                value={value.state.onboarding.nome}
+                value={value.state.onboardingP.nome}
+                onChange={(val) => {
+                    value.setOnboardingP((prev) => ({
+                      ...prev,
+                      nome: val.target.value,
+                    }))
+
+                    value.setOnboardingC((prev) => ({
+                      ...prev,
+                      nome: val.target.value,
+                    }))
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div className="mb-3">
+            <label className="form-label mb-1">
+              Sobrenome
+            </label>
+            <div
+              className="input-group border bg-white rounded-3 py-1"
+              id="exampleFormControlName"
+            >
+              <span
+                className="input-group-text bg-transparent rounded-0 border-0"
+                id="name"
+              >
+                <span className="mdi mdi-account-circle-outline mdi-18px text-muted"></span>
+              </span>
+              <input
+                type="text"
+                className="form-control bg-transparent rounded-0 border-0 px-0"
+                placeholder="Digite seu sobrenome "
+                aria-label="Type your name"
+                aria-describedby="name"
+                value={value.state.onboardingP.sobrenome}
                 onChange={(val) =>
-                  value.setOnboarding((prev) => ({
+                  value.setOnboardingP((prev) => ({
                     ...prev,
-                    nome: val.target.value,
+                    sobrenome: val.target.value,
                   }))
                 }
               />
@@ -158,12 +240,23 @@ const Signin = (props) => {
                 maskChar={""}
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite o seu celular"
-                value={value.state.onboarding.telefone}
-                onChange={(val) =>
-                  value.setOnboarding((prev) => ({
-                    ...prev,
-                    telefone: val.target.value,
-                  }))
+                value={value.state.onboardingP.telefone}
+                onChange={(val) => {
+                    value.setOnboardingP((prev) => ({
+                      ...prev,
+                      telefone: val.target.value,
+                    }))
+
+                    value.setOnboardingC((prev) => ({
+                      ...prev,
+                      telefone: val.target.value,
+                    }))
+
+                    value.setOnboardingC((prev) => ({
+                      ...prev,
+                      telefoneResponsavel: val.target.value,
+                    }))
+                  }
                 }
               />
             </div>
@@ -185,9 +278,9 @@ const Signin = (props) => {
                 name="senha"
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite sua senha"
-                value={value.state.onboarding.senha}
+                value={value.state.onboardingP.senha}
                 onChange={(val) =>
-                  value.setOnboarding((prev) => ({
+                  value.setOnboardingP((prev) => ({
                     ...prev,
                     senha: val.target.value,
                   }))
