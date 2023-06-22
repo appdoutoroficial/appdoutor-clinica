@@ -16,7 +16,7 @@ const VerifyEmail = (props) => {
   const verifySms = () => {
     if( sms != '' ){
       var email = value.state.onboardingP.email.replace("(", "");
-      axiosConfig.post("/Pessoa/ValidaEmail?email="+email+"&pin="+sms.replace(" ", ""))
+      axiosConfig.post("/Clinica/ValidaEmail?email="+email+"&pin="+sms.replace(" ", ""))
       .then((response) => {
         if( response.data.statusCode === 200 && response.data.sucesso ){
             Swal.fire({
@@ -25,7 +25,7 @@ const VerifyEmail = (props) => {
                 showCancelButton: false,
                 confirmButtonText: 'Ok',
             }).then((result) => {
-                navigate('/cadastro')
+                navigate('/cadastrar-cartao')
             });
         }
       })

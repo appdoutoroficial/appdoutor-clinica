@@ -2,28 +2,46 @@ import React, { useState, useEffect, useContext } from "react";
 import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../context/AppContext";
-import axiosConfig from "../../axiosConfig";
+import axiosConfig from "../../axiosConfigClinicas";
 import Swal from "sweetalert2";
 
 const Responsavel = (props) => {
   const navigate = useNavigate();
   const value = useContext(AppContext);
-  console.log(value);
 
-  const submitForm = () => {
-    // navigate('/selfie')
+  const checkCEP = (e) => {
+    const cep = e.target.value.replace(/\D/g, "");
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        value.setOnboardingC((prev) => ({ ...prev, endereco: data }));
+      });
+  };
+
+  const sendSubmit = () => {
     axiosConfig
-      .post("/Clinica/Salvar", value.state.onboarding)
+      .post(
+        "/Clinica/ValidaCNPJ?CNPJ=" +
+          value.state.onboardingC.cnpj
+      )
       .then((response) => {
-        if (response.data.statusCode === 200 && response.data.sucesso) {
+        console.log(response.data.mensagem);
+        if (response.data.statusCode === 200 && response.data.sucesso && response.data.mensagem != 'CPF já cadastrado.') {
           Swal.fire({
             icon: "success",
             title: response.data.mensagem,
             showCancelButton: false,
             confirmButtonText: "Ok",
           }).then((result) => {
-            navigate("/verifica-email");
+            sendEmail();
           });
+        }else{
+          Swal.fire({
+            icon: "success",
+            title: response.data.mensagem,
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+          }).then((result) => {});
         }
       })
       .catch((err) => {
@@ -36,12 +54,38 @@ const Responsavel = (props) => {
       });
   };
 
-  const checkCEP = (e) => {
-    const cep = e.target.value.replace(/\D/g, "");
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        value.setOnboardingC((prev) => ({ ...prev, endereco: data }));
+  const sendEmail = () => {
+    var telefone = value.state.onboardingP.telefone.replace("(", "");
+    telefone = telefone.replace("(", "", telefone);
+    telefone = telefone.replace(")", "", telefone);
+    telefone = telefone.replace(" ", "", telefone);
+    telefone = telefone.replace("-", "", telefone);
+    
+    axiosConfig
+      .post(
+        "/Clinica/EnviarTelefoneParaValidacao?telefone=55" + telefone
+      )
+      .then((response) => {
+        if (response.data.statusCode === 200 && response.data.sucesso) {
+          Swal.fire({
+            icon: "success",
+            title: response.data.mensagem,
+            showCancelButton: false,
+            confirmButtonText: "Ok",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/verifica-clinica");
+            }
+          });
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "warning",
+          title: "Erro por favor tente mais tarde",
+          showCancelButton: false,
+          confirmButtonText: "Ok",
+        });
       });
   };
 
@@ -217,37 +261,6 @@ const Responsavel = (props) => {
               />
             </div>
           </div>
-
-          <div className="mb-3">
-            <label for="exampleFormControlName" className="form-label mb-1">
-              Nome
-            </label>
-            <div
-              className="input-group border bg-white rounded-3 py-1"
-              id="exampleFormControlName"
-            >
-              <span
-                className="input-group-text bg-transparent rounded-0 border-0"
-                id="name"
-              >
-                <span className="mdi mdi-hospital-box mdi-18px text-muted"></span>
-              </span>
-
-              <input
-                type="text"
-                className="form-control bg-transparent rounded-0 border-0 px-0"
-                placeholder="Nome do Responsável"
-                name="responsavel"
-                value={value.state.onboardingC.responsavel}
-                onChange={(val) =>
-                  value.setOnboardingP((prev) => ({
-                    ...prev,
-                    responsavel: val.target.value,
-                  }))
-                }
-              />
-            </div>
-          </div>
           
           <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
@@ -270,6 +283,7 @@ const Responsavel = (props) => {
                 className="form-control bg-transparent rounded-0 border-0 px-0"
                 placeholder="Digite seu CEP"
                 onBlur={checkCEP}
+                value={value.state.onboardingC.endereco.cep}
               />
             </div>
           </div>
@@ -431,7 +445,7 @@ const Responsavel = (props) => {
             </div>
           </div>
           
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
               Contato
             </label>
@@ -458,7 +472,7 @@ const Responsavel = (props) => {
                 }
               />
             </div>
-          </div>
+          </div> */}
           {/* <div className="mb-3">
             <label for="exampleFormControlName1" className="form-label mb-1">
               Nível de permissão
@@ -484,7 +498,7 @@ const Responsavel = (props) => {
           </div> */}
           <div>
             <a
-              onClick={submitForm}
+              onClick={sendSubmit}
               className="btn btn-info btn-lg w-100 rounded-4 mb-3"
             >
               Finalizar Cadastro

@@ -5,9 +5,13 @@ import Menu from "../../components/Menu";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
 import Cards from "react-credit-cards-2";
+import AppContext from "../../context/AppContext";
+import axiosConfig from "../../axiosConfig";
+import Swal from "sweetalert2";
 
 const CadastrarCartao = () => {
   const navigate = useNavigate();
+  const value = useContext(AppContext);
 
   const [state, setState] = useState({
     number: "",
@@ -15,6 +19,12 @@ const CadastrarCartao = () => {
     cvc: "",
     name: "",
     focus: "",
+
+    numero: "",
+    vencimento: "",
+    cvv: "",
+    nomeNoCartao: "",
+    documento: "",
   });
 
   const handleInputChange = (evt) => {
@@ -26,6 +36,46 @@ const CadastrarCartao = () => {
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
+
+  const onSubmit = () => {
+    value.setOnboardingC((prev) => ({
+      ...prev,
+      pagamento: state,
+    }))
+
+    const form = value.state.onboardingC;
+    form.endereco.cidade = form.endereco.localidade;
+    form.endereco.estado = form.endereco.uf;
+    form.endereco.numero = '123';
+
+    console.log(form, 'FORMUA')
+
+    axiosConfig.post("/Clinica/Salvar", form)
+    .then((response) => {
+      if( response.data.statusCode === 200 && response.data.sucesso ){
+          Swal.fire({
+              icon: "success",
+              title: response.data.mensagem,
+              showCancelButton: false,
+              confirmButtonText: 'Ok',
+          }).then((result) => {
+            console.log(result);
+            
+            // saveCredencial(response.data.id)
+          });
+      }
+    })
+    .catch((err) =>{
+      console.log(err);
+        Swal.fire({
+            icon: "warning",
+            title: "Erro por favor tente mais tarde",
+            showCancelButton: false,
+            confirmButtonText: 'Ok',
+        });
+    })
+
+  }
 
   return (
     <>
@@ -64,8 +114,8 @@ const CadastrarCartao = () => {
                 </span>
                 <InputMask
                   type="text"
-                  name="name"
-                  value={state.name.props}
+                  name="nomeNoCartao"
+                  value={state.nomeNoCartao.props}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                   className="form-control bg-transparent rounded-0 border-0 px-0"
@@ -92,13 +142,42 @@ const CadastrarCartao = () => {
                 </span>
                 <InputMask
                   type="text"
-                  name="number"
+                  name="numero"
                   className="form-control bg-transparent rounded-0 border-0 px-0"
                   placeholder="Digite o número do seu cartão"
-                  value={state.number.props}
+                  value={state.numero.props}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
-                  // maxLength= {16}
+                  maxLength={16}
+                />
+              </div>
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleFormControlName1"
+                className="form-label mb-1"
+              >
+                CPF do títular
+              </label>
+              <div
+                className="input-group border bg-white rounded-3 py-1"
+                id="exampleFormControlName1"
+              >
+                <span
+                  className="input-group-text bg-transparent rounded-0 border-0"
+                  id="firstname"
+                >
+                  <span className="mdi mdi-credit-card-check-outline mdi-18px" />
+                </span>
+
+                <InputMask
+                  mask="999.999.999-99"
+                  className="form-control bg-transparent rounded-0 border-0 px-0"
+                  placeholder="Digite o seu CPF "
+                  name="documento"
+                  value={state.documento.props}
+                  onChange={handleInputChange}
+                  onFocus={handleInputFocus}
                 />
               </div>
             </div>
@@ -122,8 +201,8 @@ const CadastrarCartao = () => {
                 <InputMask
                   mask="99/99"
                   type="text"
-                  name="expiry"
-                  value={state.expiry.props}
+                  name="vencimento"
+                  value={state.vencimento.props}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                   className="form-control bg-transparent rounded-0 border-0 px-0"
@@ -150,17 +229,17 @@ const CadastrarCartao = () => {
                   <span className="mdi mdi-credit-card-check-outline mdi-18px" />
                 </span>
                 <input
-                  value={state.cvc.props}
+                  value={state.cvv.props}
                   onChange={handleInputChange}
                   onFocus={handleInputFocus}
                   type="text"
-                  name="cvc"
+                  name="cvv"
                   className="form-control bg-transparent rounded-0 border-0 px-0"
                   placeholder="Digite o código de segurança"
                   aria-label="Type your number"
                   aria-describedby="number"
                   defaultValue=""
-                  // maxLength={3}
+                  maxLength={3}
                 />
               </div>
             </div>
@@ -169,10 +248,10 @@ const CadastrarCartao = () => {
         {/* footer */}
         <div className="footer mt-auto p-3">
           <a
-            onClick={() => navigate("/admin/index")}
+            onClick={onSubmit}
             className="btn btn-info btn-lg w-100 rounded-4"
           >
-            Salvar cartão
+            Terminar cadastro
           </a>
         </div>
       </div>

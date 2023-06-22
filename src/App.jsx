@@ -7,6 +7,7 @@ import Verify from "./pages/verify/Verify";
 import VerifyEmail from "./pages/verify-email/VerifyEmail";
 import VerifySenha from "./pages/verify-senha/VerifySenha";
 
+import VerifyC from "./pages/verifyC/Verify";
 import VerifyEmailC from "./pages/verify-emailC/VerifyEmail";
 import VerifySenhaC from "./pages/verify-senhaC/VerifySenha";
 
@@ -62,8 +63,8 @@ function App() {
     {path: '/verifica-email', exact: true, element: <VerifyEmail />},
     {path: '/verifica-senha', exact: true, element: <VerifySenha />},
 
+    {path: '/verifica-clinica', exact: true, element: <VerifyC />},
     {path: '/verifica-email-clinica', exact: true, element: <VerifyEmailC />},
-    {path: '/verifica-senha-clinica', exact: true, element: <VerifySenhaC />},
 
     {path: '/cadastro', exact: true, element: <Profile />},
     {path: '/selfie', exact: true, element: <Selfie />},
