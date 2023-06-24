@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRoutes, BrowserRouter as Router } from "react-router-dom";
 import Inicial from "./pages/inicial/Inicial";
 import Signin from "./pages/sign-in/Signin";
@@ -36,6 +36,9 @@ import CadastrarEspecialista from "./pages/cadastrar-especialista/CadastrarEspec
 import MinhaClinica from "./pages/minha-clinica/MinhaClinica";
 import CadastrarClinica from "./pages/cadastrar-clinica/CadastrarClinica";
 import CadastrarPagamento from "./pages/cadastrar-pagamento/CadastrarPagamento";
+
+import { useCookies } from 'react-cookie';
+import axiosConfigLogin from './axiosConfigLogin';
 
 
 
@@ -75,7 +78,8 @@ function App() {
     {path: '/nova-senha', exact: true, element: <NovaSenha />},
     {path: '/admin/index', exact: true, element: <IndexInterno />},
     {path: '/cadastrar-cartao', exact: true, element: < CadastrarCartao/>}, 
-    {path: '/home', exact: true, element: < Home />}, 
+
+    {path: '/admin/home', exact: true, element: < Home />}, 
     {path: '/paciente', exact: true, element: < Paciente />},
     {path: '/cadastrar-paciente', exact: true, element: < CadastrarPaciente />},
     {path: '/consultas', exact: true, element: < Consultas />},
@@ -97,6 +101,7 @@ function App() {
 }
 
 const AppWrapper = () => {
+  const [cookie, setCookie] = useCookies(['idUsuario', 'mensagem', 'nome', 'nomeCompleto', 'primeiroAcesso', 'sobreNome', 'statusCode', 'sucesso', 'token']);
   const [menuObject, setMenuObject] = useState(false);
   const [onboardingP, setOnboardingP] = useState({
     nome: "",
@@ -152,17 +157,86 @@ const AppWrapper = () => {
     dataAbertura: "2023-05-18T18:08:15.756Z"
   });
 
+
+  const [userLogged, setUserLogged] = useState({
+    idUsuario: "",
+    mensagem: "",
+    nome: "",
+    nomeCompleto: "",
+    primeiroAcesso: false,
+    sobreNome: "",
+    statusCode: 0,
+    sucesso: false,
+    token: ""
+  })
+
+  const resetUser = () => {
+    setUserLogged({
+      idUsuario: "",
+      mensagem: "",
+      nome: "",
+      nomeCompleto: "",
+      primeiroAcesso: false,
+      sobreNome: "",
+      statusCode: 0,
+      sucesso: false,
+      token: ""
+    })
+  }
+
+  const verifySession = () => {
+    if(userLogged.token == '' && cookie.token == ''){
+      window.location.href = '/entrar';
+    }else{
+      axiosConfigLogin.post("/Auth/ValidarToken", {
+        token: cookie.token
+      })
+      .then((response) => {
+        if( !response.data.tokenValido ){
+          window.location.href = '/entrar';
+        }
+      })
+      .catch((err) =>{
+        if( !err.data.tokenValido ){
+          window.location.href = '/entrar';
+        }
+      })
+    }
+  }
+
+  const verifyAdmin = () => {
+    if(window.location.pathname.indexOf("admin")){
+      verifySession();
+    }
+  }
+
+  useEffect(() => {
+    if( cookie.token != '' ){
+      setUserLogged(prev => ({...prev, idUsuario: cookie.idUsuario}))
+      setUserLogged(prev => ({...prev, token: cookie.token}))
+      setUserLogged(prev => ({...prev, nomeCompleto: cookie.nomeCompleto}))
+    }
+  }, [cookie]);
+
   return (
     <AppContext.Provider
       value={{
         state: {
           changeMenu: menuObject,
           onboardingP: onboardingP,
-          onboardingC: onboardingC
+          onboardingC: onboardingC,
+
+          userLogged: userLogged,
+          cookie: cookie
         },
         setMenuObject: setMenuObject,
         setOnboardingP: setOnboardingP,
         setOnboardingC: setOnboardingC,
+
+        setUserLogged: setUserLogged,
+        resetUser: resetUser,
+        verifyAdmin: verifyAdmin,
+        setCookie: setCookie,
       }}
     >
         <Router>

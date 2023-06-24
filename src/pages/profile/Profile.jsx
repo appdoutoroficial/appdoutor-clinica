@@ -17,9 +17,16 @@ const Profile = (props) => {
     var datanascimento = dateOfBirthday(value.state.onboardingP.dataNascimento);
     const form = value.state.onboardingP;
 
+    var telefone = value.state.onboardingP.telefone.replace("(", "");
+    telefone = telefone.replace("(", "", telefone);
+    telefone = telefone.replace(")", "", telefone);
+    telefone = telefone.replace(" ", "", telefone);
+    telefone = telefone.replace("-", "", telefone);
+
     form.dataNascimento = datanascimento;
     form.endereco.cidade = form.endereco.localidade;
     form.endereco.estado = form.endereco.uf;
+    form.telefone = "55"+telefone;
     form.endereco.numero = '123';
 
     axiosConfig.post("/Pessoa/Salvar", form)

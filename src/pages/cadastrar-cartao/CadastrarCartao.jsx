@@ -48,6 +48,35 @@ const CadastrarCartao = () => {
     form.endereco.estado = form.endereco.uf;
     form.endereco.numero = '123';
 
+    var telefone = value.state.onboardingP.telefone.replace("(", "");
+    telefone = telefone.replace("(", "", telefone);
+    telefone = telefone.replace(")", "", telefone);
+    telefone = telefone.replace(" ", "", telefone);
+    telefone = telefone.replace("-", "", telefone);
+    form.telefone = telefone;
+    form.telefoneResponsavel = telefone;
+
+    form.especialidades = "1,2,3";
+    form.idPlanoSelecionado = 1;
+
+    var cnpj = value.state.onboardingC.cnpj.replace("-", "");
+    cnpj = cnpj.replace("/", "", cnpj);
+    cnpj = cnpj.replace(".", "", cnpj);
+    cnpj = cnpj.replace(".", "", cnpj);
+    form.cnpj = cnpj;
+
+    var cep = value.state.onboardingP.endereco.cep.replace("-", "");
+    form.endereco.cep = cep;
+    
+    var cpfDoc = value.state.onboardingC.pagamento.documento.replace("-", "");
+    cpfDoc = cpfDoc.replace(".", "", cpfDoc);
+    
+    form.ativo = true;
+    form.pagamento.documento = cpfDoc;
+    form.pagamento.banedeira = 2;
+
+    form.inscricaoEstadual = 'isento';
+
     console.log(form, 'FORMUA')
 
     axiosConfig.post("/Clinica/Salvar", form)

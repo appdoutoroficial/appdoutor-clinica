@@ -6,6 +6,12 @@ import Footer from "../../components/FooterPainel";
 
 const Home = () => {
   const navigate = useNavigate();
+  const value = useContext(AppContext);
+
+  setTimeout(() => {
+    value.verifyAdmin();    
+  }, 100);
+
 
   return (
     <>

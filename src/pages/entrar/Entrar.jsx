@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import InputMask from "react-input-mask";
+import AppContext from "../../context/AppContext";
 import axiosConfig from '../../axiosConfigLogin';
 import Swal from "sweetalert2";
 
 
 const Signin = (props) => {
+  const value = useContext(AppContext);
   const navigate = useNavigate();
   const [formSubmit, setSendSubmit] = useState({
     usuario: "",
@@ -17,14 +19,21 @@ const Signin = (props) => {
       axiosConfig.post("/Auth/Login", formSubmit)
       .then((response) => {
         if( response.data.statusCode === 200 && response.data.sucesso ){
-            Swal.fire({
-                icon: "success",
-                title: response.data.mensagem,
-                showCancelButton: false,
-                confirmButtonText: 'Ok',
-            }).then((result) => {
-                // navigate('/inicio')
-            });
+          value.setUserLogged(response.data);
+
+          value.setCookie('idUsuario', response.data.idUsuario, { path: '/' });
+          value.setCookie('nome', response.data.nome, { path: '/' });
+          value.setCookie('nomeCompleto', response.data.nomeCompleto, { path: '/' });
+          value.setCookie('token', response.data.token, { path: '/' });
+
+          Swal.fire({
+              icon: "success",
+              title: response.data.mensagem,
+              showCancelButton: false,
+              confirmButtonText: 'Ok',
+          }).then((result) => {
+            navigate('/admin/home')
+          });
         }else{
           Swal.fire({
             icon: "success",
