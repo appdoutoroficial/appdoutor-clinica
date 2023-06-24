@@ -23,7 +23,7 @@ const CadastrarPaciente = (props) => {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then((res) => res.json())
       .then((data) => {
-        value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
+        // value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
       });
   };
 
@@ -130,7 +130,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Endereço "
                           aria-label=""
                           aria-describedby="endereco"
-                          value={value.state.onboarding.endereco.logradouro}
+                          // value={value.state.onboarding.endereco.logradouro}
                         />
                       </div>
                       <div className="mb-4 col-md-2">
@@ -143,7 +143,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Número"
                           aria-label=""
                           aria-describedby="numero"
-                          value={value.state.onboarding.endereco.numero}
+                          // value={value.state.onboarding.endereco.numero}
                         />
                       </div>
                       <div className="mb-4 col-md-2">
@@ -156,7 +156,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Complemento"
                           aria-label=""
                           aria-describedby="Complemento"
-                          value={value.state.onboarding.endereco.complemento}
+                          // value={value.state.onboarding.endereco.complemento}
                         />
                       </div>
                       <div className="mb-4 col-md-4">
@@ -169,7 +169,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Bairro "
                           aria-label=""
                           aria-describedby="bairro"
-                          value={value.state.onboarding.endereco.bairro}
+                          // value={value.state.onboarding.endereco.bairro}
                         />
                       </div>
                       <div className="mb-4 col-md-4">
@@ -182,7 +182,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Cidade"
                           aria-label=""
                           aria-describedby="cidade"
-                          value={value.state.onboarding.endereco.localidade}
+                          // value={value.state.onboarding.endereco.localidade}
                         />
                       </div>
                       <div className="mb-4 col-md-2">
@@ -195,7 +195,7 @@ const CadastrarPaciente = (props) => {
                           placeholder="Estado"
                           aria-label=""
                           aria-describedby="Estado"
-                          value={value.state.onboarding.endereco.uf}
+                          // value={value.state.onboarding.endereco.uf}
                         />
                       </div>
                       <div className="mb-4 col-md-4">
