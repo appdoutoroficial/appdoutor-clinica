@@ -36,6 +36,7 @@ import CadastrarEspecialista from "./pages/cadastrar-especialista/CadastrarEspec
 import MinhaClinica from "./pages/minha-clinica/MinhaClinica";
 import CadastrarClinica from "./pages/cadastrar-clinica/CadastrarClinica";
 import CadastrarPagamento from "./pages/cadastrar-pagamento/CadastrarPagamento";
+import CadastrarConta from "./pages/cadastrar-conta/CadastrarConta";
 
 import { useCookies } from 'react-cookie';
 import axiosConfigLogin from './axiosConfigLogin';
@@ -95,6 +96,7 @@ function App() {
     {path: '/minha-clinica', exact: true, element: < MinhaClinica />},  
     {path: '/cadastrar-clinica', exact: true, element: < CadastrarClinica />},
     {path: '/cadastrar-pagamento', exact: true, element: < CadastrarPagamento />},
+    {path: '/cadastrar-conta', exact: true, element: < CadastrarConta />},
   ]);
 
   return element;

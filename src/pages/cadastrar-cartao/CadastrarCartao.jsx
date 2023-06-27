@@ -277,10 +277,18 @@ const CadastrarCartao = () => {
         {/* footer */}
         <div className="footer mt-auto p-3">
           <a
-            onClick={onSubmit}
+             onClick={() => navigate("/cadastrar-conta")}
             className="btn btn-info btn-lg w-100 rounded-4"
           >
-            Terminar cadastro
+            Salvar
+          </a>
+        </div>
+        <div className="footer mt-auto p-3">
+          <a
+             onClick={() => navigate("/cadastrar-conta")}
+            className="btn btn-info btn-lg w-100 rounded-4"
+          >
+            Cadastrar mais tarde
           </a>
         </div>
       </div>
