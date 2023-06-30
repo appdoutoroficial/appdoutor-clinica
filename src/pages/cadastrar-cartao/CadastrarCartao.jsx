@@ -14,12 +14,6 @@ const CadastrarCartao = () => {
   const value = useContext(AppContext);
 
   const [state, setState] = useState({
-    number: "",
-    expiry: "",
-    cvc: "",
-    name: "",
-    focus: "",
-
     numero: "",
     vencimento: "",
     cvv: "",
@@ -54,10 +48,6 @@ const CadastrarCartao = () => {
     telefone = telefone.replace(" ", "", telefone);
     telefone = telefone.replace("-", "", telefone);
     form.telefone = telefone;
-    form.telefoneResponsavel = telefone;
-
-    form.especialidades = "1,2,3";
-    form.idPlanoSelecionado = 1;
 
     var cnpj = value.state.onboardingC.cnpj.replace("-", "");
     cnpj = cnpj.replace("/", "", cnpj);
@@ -70,14 +60,10 @@ const CadastrarCartao = () => {
     
     var cpfDoc = value.state.onboardingC.pagamento.documento.replace("-", "");
     cpfDoc = cpfDoc.replace(".", "", cpfDoc);
+    cpfDoc = cpfDoc.replace(".", "", cpfDoc);
     
-    form.ativo = true;
-    form.pagamento.documento = cpfDoc;
-    form.pagamento.banedeira = 2;
-
-    form.inscricaoEstadual = 'isento';
-
-    console.log(form, 'FORMUA')
+    form.pagamento.documento = cnpj;
+    form.pagamento.bandeira = 1;
 
     axiosConfig.post("/Clinica/Salvar", form)
     .then((response) => {
@@ -103,7 +89,6 @@ const CadastrarCartao = () => {
             confirmButtonText: 'Ok',
         });
     })
-
   }
 
   return (
@@ -114,11 +99,10 @@ const CadastrarCartao = () => {
         <Menu />
 
         <Cards
-          number={state.number}
-          expiry={state.expiry}
-          cvc={state.cvc}
-          name={state.name}
-          focused={state.focus}
+          number={state.numero}
+          expiry={state.vencimento}
+          cvc={state.cvv}
+          name={state.nomeNoCartao}
         />
 
         {/* body */}
@@ -277,7 +261,7 @@ const CadastrarCartao = () => {
         {/* footer */}
         <div className="footer mt-auto p-3">
           <a
-             onClick={() => navigate("/cadastrar-conta")}
+             onClick={onSubmit}
             className="btn btn-info btn-lg w-100 rounded-4"
           >
             Salvar

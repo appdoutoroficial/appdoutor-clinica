@@ -127,13 +127,9 @@ const AppWrapper = () => {
 
 
   const [onboardingC, setOnboardingC] = useState({
-    nome: "",
-    nomeFantasia: "",
     cnpj: "",
-    clinica: "",
-    inscricaoEstadual: "",
+    dataAbertura: "2023-05-18T18:08:15.756Z",
     email: "",
-    telefone: "",
     endereco: {
       logradouro: "",
       complemento: "",
@@ -143,8 +139,13 @@ const AppWrapper = () => {
       estado: "",
       cep: ""
     },
+    especialidades: "1, 2, 3, 4",
+    idPlanoSelecionado: 1,
+    inscricaoEstadual: "",
+    modificadoPor: "",
+    nome: "",
+    nomeFantasia: "",
     responsavel: "",
-    telefoneResponsavel: "",
     pagamento: {
       nomeNoCartao: "",
       documento: "",
@@ -153,10 +154,7 @@ const AppWrapper = () => {
       vencimento: "",
       cvv: ""
     },
-    especialidades: "",
-    idPlanoSelecionado: 0,
-    modificadoPor: "",
-    dataAbertura: "2023-05-18T18:08:15.756Z"
+    telefone: "",
   });
 
 

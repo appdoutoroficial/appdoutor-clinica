@@ -202,7 +202,7 @@ const Responsavel = (props) => {
               />
             </div>
           </div>
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label for="exampleFormControlName" className="form-label mb-1">
               Nome da sua clínica
             </label>
@@ -231,7 +231,7 @@ const Responsavel = (props) => {
                 }
               />
             </div>
-          </div>
+          </div> */}
           <div className="mb-3">
             <label for="exampleFormControlCPF" className="form-label mb-1">
               Contato
