@@ -11,11 +11,7 @@ import AppContext from "../context/AppContext";
 const NavBar = () => {
    const value = useContext(AppContext);
 
-   console.log(value);
-
    // Aqui fazer a verificação e adicionar a classe, quando clicar passa o elemento atualizando para a raiz e boas. Colocar no nav ou onde precisa.
-   
-
 
    return (
       <nav id="main-nav" className={`hc-offcanvas-nav hc-nav-1 nav-levels-overlap nav-position-left disable-body  ${value.state.changeMenu ? 'nav-open' : 'hidden' }`} style={value.state.changeMenu ? {visibility:'visible', display: 'block', } : {}}  >

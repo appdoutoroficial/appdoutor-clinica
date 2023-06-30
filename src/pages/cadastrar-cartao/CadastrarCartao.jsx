@@ -64,18 +64,23 @@ const CadastrarCartao = () => {
     
     form.pagamento.documento = cnpj;
     form.pagamento.bandeira = 1;
+    
+
+    var nome = value.remove_accents(form.pagamento.nomeNoCartao);
+    form.pagamento.nomeNoCartao = nome;
 
     axiosConfig.post("/Clinica/Salvar", form)
     .then((response) => {
-      if( response.data.statusCode === 200 && response.data.sucesso ){
+        console.log(response);
+        value.setContaRecebedora(prev => ({...prev, idClinica: response.data.id}));
+        if( response.data.statusCode === 200 && response.data.sucesso ){
           Swal.fire({
               icon: "success",
               title: response.data.mensagem,
               showCancelButton: false,
               confirmButtonText: 'Ok',
           }).then((result) => {
-            console.log(result);
-            
+            navigate('/cadastrar-conta')
             // saveCredencial(response.data.id)
           });
       }
@@ -91,6 +96,9 @@ const CadastrarCartao = () => {
     })
   }
 
+
+  console.log(state, 'STATE');
+  
   return (
     <>
       <NavBar />

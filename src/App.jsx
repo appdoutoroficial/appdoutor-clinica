@@ -168,6 +168,27 @@ const AppWrapper = () => {
     statusCode: 0,
     sucesso: false,
     token: ""
+  });
+  
+  const [contaRecebedora, setContaRecebedora] = useState({
+    idClinica: "",
+    nomeFantasia: "",
+    email: "",
+    descricao: "",
+    documento: "",
+    dadosBancarios: {
+      codigoBanco: "",
+      agenciaNumero: "",
+      contaNumero: "",
+      contaDigito: "",
+      tipoConta: "",
+      nomeNoCartao: "",
+      documento: "",
+      bandeira: "",
+      numero: "",
+      vencimento: "",
+      cvv: ""
+    }
   })
 
   const resetUser = () => {
@@ -210,6 +231,24 @@ const AppWrapper = () => {
     }
   }
 
+  const remove_accents = (strAccents) => {
+    var strAccents = strAccents.split('');
+    var strAccentsOut = new Array();
+    var strAccentsLen = strAccents.length;
+    var accents =    "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëÇçðÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
+    var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeCcdDIIIIiiiiUUUUuuuuNnSsYyyZz";
+    for (var y = 0; y < strAccentsLen; y++) {
+        if (accents.indexOf(strAccents[y]) != -1) {
+            strAccentsOut[y] = accentsOut.substr(accents.indexOf(strAccents[y]), 1);
+        } else
+            strAccentsOut[y] = strAccents[y];
+    }
+    strAccentsOut = strAccentsOut.join('');
+
+    return strAccentsOut;
+}
+
+
   useEffect(() => {
     if( cookie.token != '' ){
       setUserLogged(prev => ({...prev, idUsuario: cookie.idUsuario}))
@@ -227,16 +266,20 @@ const AppWrapper = () => {
           onboardingC: onboardingC,
 
           userLogged: userLogged,
-          cookie: cookie
+          cookie: cookie,
+
+          contaRecebedora: contaRecebedora
         },
         setMenuObject: setMenuObject,
         setOnboardingP: setOnboardingP,
         setOnboardingC: setOnboardingC,
+        setContaRecebedora: setContaRecebedora,
 
         setUserLogged: setUserLogged,
         resetUser: resetUser,
         verifyAdmin: verifyAdmin,
         setCookie: setCookie,
+        remove_accents: remove_accents,
       }}
     >
         <Router>
