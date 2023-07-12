@@ -11,7 +11,7 @@ const AppDoutorPay = () => {
   const navigate = useNavigate();
 
   const options = {
-    grid: { top: 20, right: 40, bottom: 20, left: 40 },
+    grid: { },
     xAxis: {
       type: "category",
       data: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez",],
@@ -21,13 +21,19 @@ const AppDoutorPay = () => {
     },
     series: [
       {
-        data: [1000, 3000, 3500, 2000, 2800, 5000, 6000, 100000, 50000, 60000, 80000, 67000],
-        type: "bar",
-        smooth: true,
+        type: "line",
+        barWidth: "60%",
+        data: [
+          1290, 1330, 1620, 2000, 7000, 20000, 1290, 1330,
+          1620, 2000, 7000, 100000
+        ],
       },
     ],
     tooltip: {
       trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
     },
   };
 
@@ -103,9 +109,12 @@ const AppDoutorPay = () => {
         <div className="col-lg-10 col-md-10 graf">
           <div className="card mb-4">
             <div className="card-body app-pay">
-              <div className="card-title txt-app">
-                Comparativo de receita mensal
-              </div>
+            <div
+                    className="card-title txt-app"
+                    style={{ padding: 10, margin: "auto", textAlign: 'center' }}
+                  >
+                    Comparativo de receita Mensal
+                  </div>
               <ReactECharts
                 option={options}                
               ></ReactECharts>              
@@ -113,6 +122,7 @@ const AppDoutorPay = () => {
           </div>
         </div>
       </div>
+      <div className="space"></div>   
     </div>
     <Footer />
     </>
