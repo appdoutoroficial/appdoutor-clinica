@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
-import photo from '../assets/img/Logo.png'
-import photoPerfil from '../assets/img/ft_perfil.png'
+import { useNavigate } from "react-router-dom";
+import photo from "../assets/img/Logo.png";
+import photoPerfil from "../assets/img/ft_perfil.png";
 
 const NavPainel = () => {
+  const navigate = useNavigate;
   const value = useContext(AppContext);
 
   console.log(value);
 
   return (
     <>
-    {/*  <div id="overlay" onclick="off()">
+      {/*  <div id="overlay" onclick="off()">
         <div className="lds-ring">
           <div></div>
           <div></div>
@@ -22,7 +24,7 @@ const NavPainel = () => {
       <div className="app-admin-wrap layout-sidebar-large">
         <div className="main-header">
           <div className="logo">
-            <img src={photo} />           
+            <img src={photo} />
           </div>
           <div className="menu-toggle">
             <div></div>
@@ -30,7 +32,7 @@ const NavPainel = () => {
             <div></div>
           </div>
           <div className="d-flex align-items-center"></div>
-          <div style={{margin: 'auto'}}></div>
+          <div style={{ margin: "auto" }}></div>
           <div className="header-part-right">
             <div className="dropdown">
               <i
@@ -46,10 +48,10 @@ const NavPainel = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <div className="menu-icon-grid">
-                  <a href="indique/">
+                  <a onClick={() => navigate("admin/indique")}>
                     <i className="i-Affiliate"></i> Indique
                   </a>
-                  <a href="extratoIndique/">
+                  <a onClick={() => navigate("admin/extrato-indique")}>
                     <i className="i-Bar-Chart-2"></i>Minhas indicações
                   </a>
                 </div>
@@ -131,18 +133,16 @@ const NavPainel = () => {
                     <p className="text-small text-muted m-0">Paciente Gomes</p>
                   </div>
                 </div>
-                <div className="ps__rail-x" style={{left: 0, bottom: 0}}>
+                <div className="ps__rail-x" style={{ left: 0, bottom: 0 }}>
                   <div
                     className="ps__thumb-x"
-                   
-                    style={{left: 0, width: 0}}
+                    style={{ left: 0, width: 0 }}
                   ></div>
                 </div>
-                <div className="ps__rail-y" style={{top: 0, right: 0}}>
+                <div className="ps__rail-y" style={{ top: 0, right: 0 }}>
                   <div
                     className="ps__thumb-y"
-                    
-                    style={{top: 0, height: 0}}
+                    style={{ top: 0, height: 0 }}
                   ></div>
                 </div>
               </div>
@@ -158,7 +158,7 @@ const NavPainel = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 />
-            
+
                 <div
                   className="dropdown-menu dropdown-menu-right"
                   aria-labelledby="userDropdown"
@@ -167,17 +167,22 @@ const NavPainel = () => {
                     <i className="i-Lock-User mr-1"></i>
                   </div>
                   <a
+                    onClick={() => navigate("admin/perfil")}
                     className="dropdown-item"
                     id="perfil"
-                    href="perfil"
-                    onclick="perfil()"
                   >
                     Perfil
                   </a>
-                  <a className="dropdown-item" href="suporte/">
+                  <a
+                    className="dropdown-item"
+                    onClick={() => navigate("admin/suporte")}
+                  >
                     Suporte
                   </a>
-                  <a className="dropdown-item" href="signin.html">
+                  <a
+                    className="dropdown-item"
+                    onClick={() => navigate("admin/sair")}
+                  >
                     Sair
                   </a>
                 </div>
@@ -193,35 +198,35 @@ const NavPainel = () => {
           >
             <ul className="navigation-left">
               <li className="nav-item" data-item="dashboard">
-                <a id="painel" href="painel/" className="nav-item-hold">
+                <a onClick={() => navigate("admin/home/")} id="painel" className="nav-item-hold">
                   <i className="nav-icon i-Monitor-2"></i>
                   <span className="nav-text">Painel</span>
                 </a>
                 <div className="triangle"></div>
               </li>
               <li className="nav-item" data-item="uikits">
-                <a id="paciente" href="paciente/" className="nav-item-hold">
+                <a id="paciente" onClick={() => navigate("admin/paciente")} className="nav-item-hold">
                   <i className="nav-icon  i-Administrator"></i>
                   <span className="nav-text">Pacientes</span>
                 </a>
                 <div className="triangle"></div>
               </li>
               <li className="nav-item" data-item="apps">
-                <a id="consulta" href="consultas/" className="nav-item-hold">
+                <a id="consulta" onClick={() => navigate("admin/consultas")} className="nav-item-hold">
                   <i className="nav-icon i-Calendar"></i>
                   <span className="nav-text">Consultas</span>
                 </a>
                 <div className="triangle"></div>
               </li>
               <li className="nav-item" data-item="widgets">
-                <a id="chat" href="chat/" className="nav-item-hold">
+                <a id="chat" onClick={() => navigate("admin/chat")} className="nav-item-hold">
                   <i className="nav-icon  i-Speach-Bubble-3"></i>
                   <span className="nav-text">Chat</span>
                 </a>
                 <div className="triangle"></div>
               </li>
               <li className="nav-item" data-item="charts">
-                <a id="appPay" href="appdoutorPay/" className="nav-item-hold">
+                <a id="appPay" onClick={() => navigate("admin/appdoutor-pay")} className="nav-item-hold">
                   <i className="nav-icon i-Money1"></i>
                   <span className="nav-text">App Doutor Pay</span>
                 </a>
@@ -230,7 +235,7 @@ const NavPainel = () => {
               <li className="nav-item" data-item="extrakits">
                 <a
                   id="especialista"
-                  href="especialista/"
+                  onClick={() => navigate("admin/especialista")}
                   className="nav-item-hold"
                 >
                   <i className="nav-icon i-Cardiovascular"></i>
@@ -241,7 +246,7 @@ const NavPainel = () => {
               <li className="nav-item" data-item="sessions">
                 <a
                   id="minhaClin"
-                  href="minhaclinica/"
+                  onClick={() => navigate("admin/minha-clinica")}
                   className="nav-item-hold"
                 >
                   <i className="nav-icon i-Home1"></i>
