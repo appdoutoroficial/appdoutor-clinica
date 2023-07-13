@@ -235,7 +235,7 @@ const NavPainel = () => {
               <li className="nav-item" data-item="extrakits">
                 <a
                   id="especialista"
-                  onClick={() => navigate("admin/especialista")}
+                  onClick={() => navigate("/admin/especialista")}
                   className="nav-item-hold"
                 >
                   <i className="nav-icon i-Cardiovascular"></i>
