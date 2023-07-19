@@ -18,7 +18,8 @@ const CadastrarConta = () => {
     agencia: "",
     conta: "",
     digito: "",
-    tipoConta: ""
+    tipoConta: "",
+    nomeFavorecido: ""
   });
   
   const onSubmit = () => {
@@ -39,6 +40,7 @@ const CadastrarConta = () => {
     form.dadosBancarios.agenciaNumero = conta.agencia;
     form.dadosBancarios.contaNumero = conta.conta;
     form.dadosBancarios.contaDigito = conta.digito;
+    form.dadosBancarios.nomeFavorecido = conta.nomeFavorecido;
     form.dadosBancarios.tipoConta = parseInt(conta.tipoConta);
     form.dadosBancarios.nomeNoCartao = value.remove_accents(value.state.onboardingC.pagamento.nomeNoCartao);
     form.dadosBancarios.documento = cpfDoc;
@@ -488,6 +490,37 @@ const CadastrarConta = () => {
                   <option value="1">Conta corrente</option>
                   <option value="2">Conta Poupança</option>
                 </select>
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <label
+                htmlFor="exampleFormControlName1"
+                className="form-label mb-1"
+              >
+                Nome do Favorecido
+              </label>
+              <div
+                className="input-group border bg-white rounded-3 py-1"
+                id="exampleFormControlName1"
+              >
+                <span
+                  className="input-group-text bg-transparent rounded-0 border-0"
+                  id="firstname"
+                >
+                  <span className="mdi mdi-credit-card-check-outline mdi-18px" />
+                </span>
+                <input className="form-control bg-transparent rounded-0 border-0 px-0"
+                  value={conta.nomeFavorecido}
+                  placeholder="Nome do Favorecido"
+                  onChange={(val) => {
+                    setConta((prev) => ({
+                      ...prev,
+                      nomeFavorecido: val.target.value,
+                    }))
+                    }
+                  }
+                />
               </div>
             </div>
           </form>

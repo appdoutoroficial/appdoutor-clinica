@@ -69,31 +69,33 @@ const CadastrarCartao = () => {
     var nome = value.remove_accents(form.pagamento.nomeNoCartao);
     form.pagamento.nomeNoCartao = nome;
 
-    axiosConfig.post("/Clinica/Salvar", form)
-    .then((response) => {
-        console.log(response);
-        value.setContaRecebedora(prev => ({...prev, idClinica: response.data.id}));
-        if( response.data.statusCode === 200 && response.data.sucesso ){
+    setTimeout(() => {
+      axiosConfig.post("/Clinica/Salvar", form)
+      .then((response) => {
+          console.log(response);
+          value.setContaRecebedora(prev => ({...prev, idClinica: response.data.id}));
+          if( response.data.statusCode === 200 && response.data.sucesso ){
+            Swal.fire({
+                icon: "success",
+                title: response.data.mensagem,
+                showCancelButton: false,
+                confirmButtonText: 'Ok',
+            }).then((result) => {
+              navigate('/cadastrar-conta')
+              // saveCredencial(response.data.id)
+            });
+        }
+      })
+      .catch((err) =>{
+        console.log(err);
           Swal.fire({
-              icon: "success",
-              title: response.data.mensagem,
+              icon: "warning",
+              title: "Erro por favor tente mais tarde",
               showCancelButton: false,
               confirmButtonText: 'Ok',
-          }).then((result) => {
-            navigate('/cadastrar-conta')
-            // saveCredencial(response.data.id)
           });
-      }
-    })
-    .catch((err) =>{
-      console.log(err);
-        Swal.fire({
-            icon: "warning",
-            title: "Erro por favor tente mais tarde",
-            showCancelButton: false,
-            confirmButtonText: 'Ok',
-        });
-    })
+      })
+    }, 1000);
   }
 
 
