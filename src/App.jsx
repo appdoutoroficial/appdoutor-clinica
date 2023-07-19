@@ -79,6 +79,7 @@ function App() {
     {path: '/nova-senha', exact: true, element: <NovaSenha />},
     {path: '/admin/index', exact: true, element: <IndexInterno />},
     {path: '/cadastrar-cartao', exact: true, element: < CadastrarCartao/>}, 
+    {path: '/cadastrar-conta', exact: true, element: < CadastrarConta />},
 
     {path: '/admin/home', exact: true, element: < Home />}, 
     {path: '/admin/paciente', exact: true, element: < Paciente />},
@@ -96,7 +97,6 @@ function App() {
     {path: '/admin/minha-clinica', exact: true, element: < MinhaClinica />},  
     {path: '/admin/cadastrar-clinica', exact: true, element: < CadastrarClinica />},
     {path: '/admin/cadastrar-pagamento', exact: true, element: < CadastrarPagamento />},
-    {path: '/admin/cadastrar-conta', exact: true, element: < CadastrarConta />},
   ]);
 
   return element;
