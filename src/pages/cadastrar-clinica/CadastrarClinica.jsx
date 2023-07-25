@@ -18,12 +18,12 @@ const CadastrarClinica = (props) => {
   };
 
   const checkCEP = (e) => {
-    const cep = e.target.value.replace(/\D/g, "");
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
-      });
+    // const cep = e.target.value.replace(/\D/g, "");
+    // fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     value.setOnboardingP((prev) => ({ ...prev, endereco: data }));
+    //   });
   };
 
   const navigate = useNavigate();
@@ -73,7 +73,6 @@ const CadastrarClinica = (props) => {
                         maskChar={""}
                         className="form-control"
                         placeholder="Digite o seu celular"
-                        defaultValue={value.state.onboarding.telefone}
                         onChange={(val) =>
                           value.setOnboardingP((prev) => ({
                             ...prev,
@@ -86,7 +85,6 @@ const CadastrarClinica = (props) => {
                       <p class="font-weight-400 mb-2">CNPJ*</p>
                       <InputMask
                         mask="99.999.999/9999-99"
-                        defaultValue={value.state.onboarding.cnpj}
                         className="form-control"
                         placeholder="Digite o seu CNPJ "
                         onChange={(val) =>
@@ -104,7 +102,6 @@ const CadastrarClinica = (props) => {
                         className="form-control"
                         placeholder="Digite sua Inscrição estadual"
                         name="inscricaoEstadual"
-                        value={value.state.onboarding.inscricaoEstadual}
                         onChange={(val) =>
                           value.setOnboardingP((prev) => ({
                             ...prev,
@@ -135,7 +132,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Endereço "
                         aria-label=""
                         aria-describedby="endereco"
-                        value={value.state.onboarding.endereco.logradouro}
                       />
                     </div>
                     <div class="mb-4 col-md-4">
@@ -148,7 +144,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Número"
                         aria-label=""
                         aria-describedby="numero"
-                        value={value.state.onboarding.endereco.numero}
                       />
                     </div>
                     <div class="mb-4 col-md-4">
@@ -161,7 +156,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Complemento"
                         aria-label=""
                         aria-describedby="Complemento"
-                        value={value.state.onboarding.endereco.complemento}
                       />
                     </div>
                     <div class="mb-4 col-md-4">
@@ -174,7 +168,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Bairro "
                         aria-label=""
                         aria-describedby="bairro"
-                        value={value.state.onboarding.endereco.bairro}
                       />
                     </div>
                     <div class="mb-4 col-md-4">
@@ -187,7 +180,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Cidade"
                         aria-label=""
                         aria-describedby="cidade"
-                        value={value.state.onboarding.endereco.localidade}
                       />
                     </div>
                     <div class="mb-4 col-md-4">
@@ -200,7 +192,6 @@ const CadastrarClinica = (props) => {
                         placeholder="Estado"
                         aria-label=""
                         aria-describedby="Estado"
-                        value={value.state.onboarding.endereco.uf}
                       />
                     </div>
 
